@@ -16,6 +16,9 @@ class Config {
   public static function DB_SCHEME(){
     return Config::get_env("DB_HOST","teachme");
   }
+  public static function DB_PORT(){
+    return Config::get_env("DB_PORT","3306");
+  }
 
   //SMTP CONFIG
   public static function SMTP_HOST(){
