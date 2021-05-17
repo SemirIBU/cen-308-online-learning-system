@@ -8,13 +8,13 @@ class Config {
     return Config::get_env("DB_HOST","localhost");
   }
   public static function DB_USERNAME(){
-    return Config::get_env("DB_HOST","developer");
+    return Config::get_env("DB_USERNAME","developer");
   }
   public static function DB_PASSWORD(){
-    return Config::get_env("DB_HOST","Teachme2021");
+    return Config::get_env("DB_PASSWORD","Teachme2021");
   }
   public static function DB_SCHEME(){
-    return Config::get_env("DB_HOST","teachme");
+    return Config::get_env("DB_SCHEME","teachme");
   }
   public static function DB_PORT(){
     return Config::get_env("DB_PORT","3306");
