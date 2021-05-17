@@ -1,0 +1,427 @@
+<!doctype html>
+<html class="full-page-form" lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login</title>
+  <link rel="icon" href="assets/img/favicon.png">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- spapp -->
+  <link rel="stylesheet" href="assets/css/jQuerySPApp.css">
+  <!-- toastr -->
+  <link rel="stylesheet" href="assets/css/jquery.toast.min.css">
+  <!-- style CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- custom style CSS -->
+  <link rel="stylesheet" href="assets/css/custom-style.css">
+</head>
+<!-- ================ contact section start ================= -->
+
+<body style="display: none;">
+  <section class="contact-section full-page-form-section">
+    <div class="container">
+
+
+
+      <div class="row">
+        <div class="col-12 offset-lg-2 col-lg-8">
+          <div id="login" class="form-box">
+            <h2 class="contact-title">Log in</h2>
+            <form class="form-contact contact_form" method="post" id="loginForm"
+              novalidate="novalidate">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input class="form-control thicker-input mb-2" name="email" type="email"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
+                      placeholder='Enter email address'>
+                    <label for="password">Password</label>
+                    <input class="form-control thicker-input mb-2" name="password" type="password"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter password'"
+                      placeholder='Enter password'>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group text-right">
+                <button id="login-link" class="button btn_1">Log in</button>
+              </div>
+            </form>
+            <div class="d-flex justify-content-between mt-5 flex-column flex-md-row">
+              <p>Forgot password? <a href="#" onclick="showForgotPassword();">Click here to reset password</a></p>
+              <p>Don't have an account? <a href="#" onclick="showRegister();">Register</a></p>
+            </div>
+          </div>
+          <div id="register" class="form-box">
+            <h2 class="contact-title">Register</h2>
+            <form class="form-contact contact_form" method="post" id="registerForm"
+              novalidate="novalidate">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="account">Account</label>
+                    <input class="form-control thicker-input mb-2" name="account" required type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Account name'"
+                      placeholder='Account name'>
+
+                    <label for="email">Name</label>
+                    <input class="form-control thicker-input mb-2" required name="name" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your name'" placeholder='Your name'>
+
+                    <label for="email">E-mail</label>
+                    <input class="form-control thicker-input mb-2" required name="email" type="email"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
+                      placeholder='Enter email address'>
+
+                    <label for="password">Password</label>
+                    <input class="form-control thicker-input mb-2" required name="password" type="password"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter password'"
+                      placeholder='Enter password'>
+
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <button id="register-link" class="button btn_1 float-right">Register</button>
+                <p>Already have an account? <a href="login.html">Log in</a></p>
+              </div>
+            </form>
+          </div>
+          <div id="forgotPassword" class="hidden form-box">
+            <h2 class="contact-title">Forgot password</h2>
+            <form class="form-contact contact_form" method="post" id="forgotPasswordForm"
+              novalidate="novalidate">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input class="form-control thicker-input mb-2" name="email" type="email"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter account email address'"
+                      placeholder='Enter account email address'>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <button id="forgot-link" class="button btn_1 float-right">Send recovery
+                  link</button>
+                <p><a href="#" onclick="showLoginForm();">Back to Login</a></p>
+              </div>
+            </form>
+          </div>
+          <div id="resetPassword" class="hidden form-box">
+            <h2 class="contact-title">Change password</h2>
+            <form class="form-contact contact_form" id="resetPasswordForm"
+              novalidate="novalidate">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <input class="form-control thicker-input hidden" name="token" type="text">
+                    <label for="password">Password</label>
+                    <input class="form-control thicker-input mb-2" name="password" type="password"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter new password'"
+                      placeholder='Enter new password'>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <button id="reset-link" class="button btn_1 float-right">Change
+                  password</button>
+                <p><a href="#" onclick="showLoginForm();">Back to Login</a></p>
+              </div>
+            </form>
+          </div>
+
+          <span style="display: none;" class="loader-wrapper" id="loader">
+            <div><img src="assets/img/loader.svg" /></div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- jquery -->
+  <script src="assets/js/jquery-1.12.1.min.js"></script>
+  <!-- spapp -->
+  <script src="assets/js/jQuerySPApp.js"></script>
+  <!-- toastr -->
+  <script src="assets/js/jquery.toast.min.js"></script>
+  <!-- validation -->
+  <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+  <!-- utils -->
+  <script src="assets/js/utils.js"></script>
+
+
+
+  <script type="text/javascript">
+
+    function showLoginForm() {
+      $('#forgotPassword').hide();
+      $('#register').hide();
+      $('#resetPassword').hide();
+      $('#login').show();
+    }
+    function showForgotPassword() {
+      $('#login').hide();
+      $('#register').hide();
+      $('#resetPassword').hide();
+      $('#forgotPassword').show();
+    }
+    function showRegister() {
+      $('#login').hide();
+      $('#forgotPassword').hide();
+      $('#resetPassword').hide();
+      $('#register').show();
+    }
+    function showResetPassword() {
+      $('#login').hide();
+      $('#forgotPassword').hide();
+      $('#register').hide();
+      $('#resetPassword').show();
+    }
+
+    $(function () {
+      if (window.localStorage.getItem("token")) {
+        window.location = "index.html";
+      } else {
+        $('body').show();
+      }
+
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('token')) {
+        $("#token-reset").val(urlParams.get('token'));
+        showResetPassword();
+      }
+    });
+
+    function changePassword() {
+      $("#reset-link").prop('disabled', true);
+      $("#loader").show();
+      $.post("api/reset", jsonize_form("#changePasswordForm")).done(function (data) {
+        window.localStorage.setItem("token", data.token);
+        $.toast({
+          heading: 'Success',
+          text: 'You have successfully changed your password.',
+          icon: 'success',
+          loaderBg: '#F7B600',
+          loader: false,
+          hideAfter: 10000,
+          position: 'mid-center',
+        });
+        setTimeout(
+          function () {
+            $.toast({
+              // heading: 'Information',
+              text: 'Logging in automatically...',
+              icon: 'info',
+              loader: true,
+              hideAfter: 3000,
+              position: 'mid-center',
+            });
+          }, 1000);
+        setTimeout(
+          function () {
+            //redirect to new location
+            window.location = "index.html";
+          }, 4000);
+      }).fail(function (error) {
+        $("#reset-link").prop('disabled', false);
+        $("#loader").hide();
+        $.toast({
+          heading: 'Error',
+          text: error.responseJSON.message,
+          icon: 'error',
+          loader: true,
+          loaderBg: '#F7B600',
+          hideAfter: 10000,
+          position: 'mid-center',
+        })
+      });
+    }
+
+    function doLogin() {
+      $("#login-link").prop('disabled', true);
+      $("#loader").show();
+      $.post("api/login", jsonize_form("#loginForm")).done(function (data) {
+        data.token;
+        window.localStorage.setItem("token", data.token);
+        //redirect to new location
+        window.location = "index.html";
+
+      }).fail(function (error) {
+        $("#login-link").prop('disabled', false);
+        $("#loader").hide();
+        $.toast({
+          heading: 'Error',
+          text: error.responseJSON.message,
+          icon: 'error',
+          loader: true,
+          loaderBg: '#F7B600',
+          hideAfter: 10000,
+          position: 'mid-center',
+          showHideTransition: 'fade'
+        })
+      });
+    }
+    function doRegister() {
+      $("#register-link").prop('disabled', true);
+      $("#loader").show();
+
+      $.post("api/register", jsonize_form("#registerForm")).done(function (data) {
+        $("#loader").hide();
+        $.toast({
+          heading: 'Success',
+          text: 'Your account has been succesfully created!<hr style="border-color:inherit;margin:5px 0;border-width:2px;">An email confirmation has been sent to your email address.',
+          icon: 'success',
+          loader: true,
+          loaderBg: '#F7B600',
+          hideAfter: 10000,
+          position: 'mid-center',
+        });
+
+
+      }).fail(function (error) {
+        $("#register-link").prop('disabled', false);
+        $("#loader").hide();
+
+        $.toast({
+          heading: 'Error',
+          text: error.responseJSON.message,
+          icon: 'error',
+          loader: true,
+          loaderBg: '#F7B600',
+          hideAfter: 10000,
+          position: 'mid-center',
+        })
+      });
+    }
+
+    function forgotPassword() {
+      $("#forgot-link").prop('disabled', true);
+      $("#loader").show();
+      $.post("api/forgot", jsonize_form("#forgotPasswordForm")).done(function (data) {
+        $("#loader").hide();
+        $.toast({
+          heading: 'Success',
+          text: 'Recovery mail sent, check your inbox',
+          icon: 'success',
+          loader: true,
+          loaderBg: '#F7B600',
+          hideAfter: 10000,
+          position: 'mid-center',
+        })
+
+      }).fail(function (error) {
+        $("#forgot-link").prop('disabled', false);
+        $("#loader").hide();
+        $.toast({
+          heading: 'Error',
+          text: error.responseJSON.message,
+          icon: 'error',
+          loader: true,
+          loaderBg: '#F7B600',
+          hideAfter: 10000,
+          position: 'mid-center',
+          showHideTransition: 'fade'
+        })
+      });
+    }
+
+    $("#registerForm").validate({
+      rules: {
+        account: "required",
+        name: {
+          required: true,
+          minlength: 2
+        },
+        email: {
+          required: true,
+          email: true
+        },
+        password: {
+          required: true,
+          minlength: 5
+        },
+      },
+      messages: {
+        account: "Please enter your account name",
+        name: {
+          required: "Please enter your name",
+          minlength: "Your username must consist of at least 2 characters"
+        },
+        email: "Please enter a valid email address",
+        password: {
+          required: "Please provide a password",
+          minlength: "Your password must be at least 5 characters long"
+        },
+      },
+      submitHandler: function (form, event) {
+        event.preventDefault();
+        doRegister();
+      }
+    });
+
+    $("#loginForm").validate({
+      rules: {        
+        email: {
+          required: true,
+          email: true
+        },
+        password: {
+          required: true,
+          minlength: 5
+        },
+      },
+      messages: {        
+        email: "Please enter a valid email address",
+        password: {
+          required: "Please enter your password",
+          minlength: "Your password must be at least 5 characters long"
+        },
+      },
+      submitHandler: function (form, event) {
+        event.preventDefault();
+        doLogin();
+      }
+    });
+
+    $("#forgotPasswordForm").validate({
+      rules: {        
+        email: {
+          required: true,
+          email: true
+        },
+      },
+      messages: {        
+        email: "Please enter your email address",
+      },
+      submitHandler: function (form, event) {
+        event.preventDefault();
+        forgotPassword();
+      }
+    });
+    $("#resetPasswordForm").validate({
+      rules: {        
+        password: {
+          required: true,
+          minlength: 5
+        },
+      },
+      messages: {        
+        password: {
+          required: "Please provide a password",
+          minlength: "Your password must be at least 5 characters long"
+        },
+      },
+      submitHandler: function (form, event) {
+        event.preventDefault();
+        changePassword();
+      }
+    });
+  </script>
+</body>
+<!-- ================ contact section end ================= -->
+
+</html>

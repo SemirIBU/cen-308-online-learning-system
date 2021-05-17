@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+  <g id="Component_5_1" data-name="Component 5 – 1" transform="translate(2 2)">
+    <g id="Ellipse_2" data-name="Ellipse 2" fill="none" stroke="#f7b600" stroke-linecap="round" stroke-width="2" stroke-dasharray="1 5">
+      <circle cx="20" cy="20" r="21" fill="none">
+        <animateTransform attributeName="transform"
+        attributeType="XML"
+        type="rotate"
+        from="0 20 20"
+        to="360 20 20"
+        dur="10s"
+        repeatCount="indefinite"
+        />
+      </circle>
+    </g>
+    <g id="mortarboard_1_" data-name="mortarboard (1)" transform="translate(6.329 -31.065)">
+      <path id="Path_13" data-name="Path 13" d="M26.808,47.055l-12.87-4.541a.8.8,0,0,0-.533,0L.535,47.055a.8.8,0,0,0,0,1.51L13.4,53.14a.8.8,0,0,0,.537,0l12.87-4.575a.8.8,0,0,0,0-1.51Z" transform="translate(0 0)" fill="#0c2e60">
+      <animateTransform id="teeast"
+        attributeName="transform"
+        attributeType="XML"
+        type="translate"        
+        dur="1s"
+        values="0,0;0,-1.5;0,0"
+        repeatCount="indefinite"
+        />
+        </path>
+      
+      <path id="Path_14" data-name="Path 14" d="M433.552,203.969v-6.235l-1.8.508v5.727a1.308,1.308,0,0,0,0,2.49v3.513a.923.923,0,0,0,1.8,0v-3.513a1.308,1.308,0,0,0,0-2.49Z" transform="translate(-408.036 -151.024)" fill="#0c2e60">
+      <animateTransform id="teeast"
+        attributeName="transform"
+        attributeType="XML"
+        type="translate"        
+        dur="1s"
+        begin=".1"
+        values="-408.036, -151.024;-408.036, -151.5;-408.036, -151.024"
+        repeatCount="indefinite"
+        />
+        </path>
+      <path id="Path_15" data-name="Path 15" d="M113.484,225.123a2.4,2.4,0,0,1-.8-.139l-7.235-2.572v3.525c0,.862.9,1.592,2.674,2.168a18.884,18.884,0,0,0,10.732,0c1.774-.576,2.674-1.305,2.674-2.168v-3.525l-7.235,2.572A2.4,2.4,0,0,1,113.484,225.123Z" transform="translate(-99.813 -170.335)" fill="#0c2e60">
+      <animateTransform id="teeast"
+        attributeName="transform"
+        attributeType="XML"
+        type="translate"        
+        dur="1s"
+        begin=".07"
+        values="-99.813 -170.335;-99.813 -171.835;-99.813 -170.335"
+        repeatCount="indefinite"
+        />
+        </path>
+    </g>
+  </g>
+</svg>

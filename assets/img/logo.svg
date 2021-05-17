@@ -1,0 +1,13 @@
+<svg id="Component_4_1" data-name="Component 4 – 1" xmlns="http://www.w3.org/2000/svg" width="105" height="74" viewBox="0 0 105 74">
+  <g id="Component_2_5" data-name="Component 2 – 5">
+    <g id="Group_2" data-name="Group 2" transform="translate(-944 -608)">
+      <text id="teach_me" data-name="teach
+me" transform="translate(944 645)" fill="#f7b600" font-size="35" font-family="Poppins-Bold, Poppins" font-weight="700"><tspan x="0" y="0">teach</tspan><tspan fill="#ff4723"><tspan x="0" y="25">me</tspan></tspan></text>
+    </g>
+    <g id="mortarboard_1_" data-name="mortarboard (1)" transform="translate(63.087 -2.594)">
+      <path id="Path_13" data-name="Path 13" d="M40.114,49.331,20.856,42.536a1.2,1.2,0,0,0-.8,0L.8,49.331a1.2,1.2,0,0,0,0,2.26l19.258,6.846a1.2,1.2,0,0,0,.8,0l19.258-6.846a1.2,1.2,0,0,0,0-2.26Z" fill="#0c2e60"/>
+      <path id="Path_14" data-name="Path 14" d="M434.895,207.065v-9.331l-2.69.761v8.57a1.957,1.957,0,0,0,0,3.725v5.257a1.381,1.381,0,0,0,2.69,0V210.79a1.957,1.957,0,0,0,0-3.726Z" transform="translate(-396.714 -148.919)" fill="#0c2e60"/>
+      <path id="Path_15" data-name="Path 15" d="M117.475,226.469a3.587,3.587,0,0,1-1.2-.208l-10.826-3.849v5.275c0,1.29,1.346,2.382,4,3.243a28.257,28.257,0,0,0,16.059,0c2.655-.862,4-1.953,4-3.243v-5.275l-10.826,3.849A3.587,3.587,0,0,1,117.475,226.469Z" transform="translate(-97.018 -165.565)" fill="#0c2e60"/>
+    </g>
+  </g>
+</svg>
