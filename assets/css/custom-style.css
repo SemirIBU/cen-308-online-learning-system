@@ -82,7 +82,7 @@ button:disabled, button[disabled] {
     position: absolute;
     height: 74px;
     width: 105px;
-    background-image: url(../img/logo.svg);
+    background-image: url(../img/logo.png);
     top: 0px;
     right: 0px;
     margin: 10px 35px;

@@ -11,12 +11,12 @@ require_once dirname(__FILE__).'/services/UserService.class.php';
 require_once dirname(__FILE__).'/services/CourseService.class.php';
 
 
-// Flight::set('flight.log_errors', TRUE);
+Flight::set('flight.log_errors', TRUE);
 
-// /* error handling for our API*/
-// Flight::map('error', function(Exception $ex){
-//     Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
-// });
+/* error handling for our API*/
+Flight::map('error', function(Exception $ex){
+    Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
+});
 
 /* utility function for reading query parameters from URL*/
 Flight::map('query', function($name, $default_value = NULL){
