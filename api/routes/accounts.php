@@ -3,7 +3,8 @@
 /**
  * @OA\Info(title="Teach me API", version="0.1")
  * @OA\OpenApi(
- *   @OA\Server(url="http://localhost/teachme/api/", description="Development environment")
+ *   @OA\Server(url="http://localhost/teachme/api/", description="Development environment"),
+ *   @OA\Server(url="https://teachme.sahman.me/api/", description="Production environment")
  * ),
  * @OA\SecurityScheme(securityScheme="ApiKeyAuth", type="apiKey", in="header", name="Authentication" )
  */
