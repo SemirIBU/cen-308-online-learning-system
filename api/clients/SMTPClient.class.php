@@ -2,6 +2,7 @@
 require_once dirname(__FILE__).'/../config.php';
 require_once dirname(__FILE__).'/../../vendor/autoload.php';
 
+
 class SMTPClient {
 
   private $mailer;
@@ -18,7 +19,7 @@ class SMTPClient {
     $message = (new Swift_Message('Confirm your account'))
       ->setFrom(['registration@teachme.com' => 'Teach Me'])
       ->setTo([$user['email']])
-      ->setBody('Here is the confirmation link: http://localhost/teachme/api/confirm/'.$user['token']);
+      ->setBody('Here is the confirmation link:'.Config::BASE_URL().'/api/confirm/'.$user['token']);
 
     $this->mailer->send($message);
   }
@@ -27,7 +28,7 @@ class SMTPClient {
     $message = (new Swift_Message('Reset your password'))
       ->setFrom(['registration@teachme.com' => 'Teach Me'])
       ->setTo([$user['email']])
-      ->setBody('Click on the following link to reset you password: http://localhost/teachme/login.html?token='.$user['token']);
+      ->setBody('Click on the following link to reset you password:'.Config::BASE_URL().'/login.html?token='.$user['token']);
 
     $this->mailer->send($message);
   }

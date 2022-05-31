@@ -7,7 +7,6 @@ require_once dirname(__FILE__)."/../config.php";
 * All other DAO classes should inherit this class.
 *
 * @author Admir Sahman
-* @author Semir Sahman
 */
 class BaseDao {
   protected $connection;
@@ -25,24 +24,23 @@ class BaseDao {
     $this->connection->rollBack();
   }
 
-  public static function parse_order($order){
+  public function parse_order($order){
     switch(substr($order, 0, 1)){
-      case '-': $order_direction= "ASC"; break;
-      case '+': $order_direction= "DESC"; break;
-        default: throw new Exception(("Invalid order format"));
+      case '-': $order_direction = "ASC"; break;
+      case '+': $order_direction = "DESC"; break;
+      default: throw new Exception("Invalid order format. First character should be either + or -"); break;
     };
 
-    $order_column = substr($order, 1);
-    //TODO PREVENT SQL INJECTION
+    // Filter SQL injection attacks on column name
+    $order_column = trim($this->connection->quote(substr($order, 1)),"'");
 
     return [$order_column, $order_direction];
-  
   }
 
   public function __construct($table){
     $this->table = $table;
     try {
-      $this->connection = new PDO("mysql:host=".Config::DB_HOST().";dbname=".Config::DB_SCHEME(), Config::DB_USERNAME(), Config::DB_PASSWORD());
+      $this->connection = new PDO("mysql:host=".Config::DB_HOST().";port=".Config::DB_PORT().";dbname=".Config::DB_SCHEME(), Config::DB_USERNAME(), Config::DB_PASSWORD());
       $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //$this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
 

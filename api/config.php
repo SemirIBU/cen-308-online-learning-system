@@ -19,6 +19,9 @@ class Config {
   public static function DB_PORT(){
     return Config::get_env("DB_PORT","3306");
   }
+  public static function BASE_URL(){
+    return Config::get_env("BASE_URL","cen-308-online-learning-system");
+  }
 
   //SMTP CONFIG
   public static function SMTP_HOST(){
