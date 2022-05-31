@@ -188,7 +188,7 @@
     function changePassword() {
       $("#reset-link").prop('disabled', true);
       $("#loader").show();
-      $.post("api/reset", jsonize_form("#changePasswordForm")).done(function (data) {
+      $.post("api/reset", AUtils.form2json("#changePasswordForm")).done(function (data) {
         window.localStorage.setItem("token", data.token);
         $.toast({
           heading: 'Success',
@@ -233,7 +233,7 @@
     function doLogin() {
       $("#login-link").prop('disabled', true);
       $("#loader").show();
-      $.post("api/login", jsonize_form("#loginForm")).done(function (data) {
+      $.post("api/login", AUtils.form2json("#loginForm")).done(function (data) {
         data.token;
         window.localStorage.setItem("token", data.token);
         //redirect to new location
@@ -258,7 +258,7 @@
       $("#register-link").prop('disabled', true);
       $("#loader").show();
 
-      $.post("api/register", jsonize_form("#registerForm")).done(function (data) {
+      $.post("api/register", AUtils.form2json("#registerForm")).done(function (data) {
         $("#loader").hide();
         $.toast({
           heading: 'Success',
@@ -290,7 +290,7 @@
     function forgotPassword() {
       $("#forgot-link").prop('disabled', true);
       $("#loader").show();
-      $.post("api/forgot", jsonize_form("#forgotPasswordForm")).done(function (data) {
+      $.post("api/forgot", AUtils.form2json("#forgotPasswordForm")).done(function (data) {
         $("#loader").hide();
         $.toast({
           heading: 'Success',

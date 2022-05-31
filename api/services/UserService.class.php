@@ -4,6 +4,8 @@ require_once dirname(__FILE__).'/../dao/UserDao.class.php';
 require_once dirname(__FILE__).'/../dao/AccountDao.class.php';
 
 require_once dirname(__FILE__).'/../clients/SMTPClient.class.php';
+require_once dirname(__FILE__).'/../config.php';
+
 
 
 class UserService extends BaseService{
@@ -39,7 +41,7 @@ class UserService extends BaseService{
     $db_user = $this->update($db_user['id'],['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
     
     //send email
-    $this->smtpClient->send_user_recovery_token($db_user);
+    if(Config::ENVIRONMENT()!='local') $this->smtpClient->send_user_recovery_token($db_user);
 
   }
 
@@ -89,7 +91,7 @@ class UserService extends BaseService{
       }
     }
 
-    $this->smtpClient->send_register_user_token($user);
+    if(Config::ENVIRONMENT()!='local') $this->smtpClient->send_register_user_token($user);
 
     return $user;
   }
