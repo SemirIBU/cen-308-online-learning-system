@@ -52,7 +52,7 @@ class Config
     return Config::get_env("ENVIRONMENT", "local");
   }
 
-  const JWT_SECRET = "JmKLzuHZG63h3jnzJDz";
+  const JWT_SECRET = "jnqz+t2*7QyE643GmVmaT*as";
   const JWT_TOKEN_TIME = 604800;
 
   public static function get_env($name, $default)

@@ -9,7 +9,7 @@
  * )
  */
 Flight::route('GET /student/courses', function(){
-  $account_id = Flight::get('student')['aid'];
+  $account_id = Flight::get('user')['aid'];
   $offset = Flight::query('offset', 0);
   $limit = Flight::query('limit', 25);
   $search = Flight::query('search');
@@ -35,13 +35,7 @@ Flight::route('GET /student/count', function(){
  * )
  */
 Flight::route('GET /student/courses/@id', function($id){
-  /*$course = Flight::courseService()->get_by_id($id);
-  if ($course['account_id'] != Flight::get('student')['aid']){
-    Flight::json([]);
-  }else{
-    Flight::json($course);
-  }*/
-  Flight::json(Flight::courseService()->get_course_by_account_and_id(Flight::get('student')['aid'], $id));
+  Flight::json(Flight::courseService()->get_course_by_account_and_id(Flight::get('user')['aid'], $id));
 });
 
 /**
@@ -58,7 +52,7 @@ Flight::route('GET /student/courses/@id', function($id){
  * )
  */
 Flight::route('POST /student/courses', function(){
-  Flight::json(Flight::courseService()->add_course(Flight::get('student'), Flight::request()->data->getData()));
+  Flight::json(Flight::courseService()->add_course(Flight::get('user'), Flight::request()->data->getData()));
 });
 
 /**
@@ -76,7 +70,7 @@ Flight::route('POST /student/courses', function(){
  * )
  */
 Flight::route('PUT /student/courses/@id', function($id){
-  Flight::json(Flight::courseService()->update_course(Flight::get('student'), intval($id), Flight::request()->data->getData()));
+  Flight::json(Flight::courseService()->update_course(Flight::get('user'), intval($id), Flight::request()->data->getData()));
 });
 
 /**

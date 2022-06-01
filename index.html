@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom-style.css">
 
-    <link href="./assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
@@ -118,6 +117,9 @@
             } else {
                 $('body').show();
             }
+
+            //ONLY FOR TESTING PURPOSES
+            console.log(localStorage.token);
         });
         function logout() {
             window.localStorage.clear();

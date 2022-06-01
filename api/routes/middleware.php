@@ -18,8 +18,8 @@ Flight::route('/student/*', function(){
 Flight::route('/professor/*', function(){
   try {
     $user = (array)\Firebase\JWT\JWT::decode(Flight::header("Authentication"), Config::JWT_SECRET, ["HS256"]);
-    if ($user['r'] != "professor"){
-      throw new Exception("Proffesor access required", 403);
+    if ($user['r'] != "professor" or $user['r'] != "admin"){
+      throw new Exception("Professor access required", 403);
     }
     Flight::set('user', $user);
     return TRUE;

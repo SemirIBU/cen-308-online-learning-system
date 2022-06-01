@@ -26,7 +26,7 @@ Flight::route('GET /admin/accounts',function(){
  * )
  */
 Flight::route('GET /admin/accounts/@id',function($id){     
-    if(Flight::get('student')['aid'] != $id) throw new Exception("This account is not for you", 403);
+    if(Flight::get('user')['aid'] != $id) throw new Exception("This account is not for you", 403);
     Flight::json(Flight::accountService()->get_by_id($id));
 });
 
@@ -78,14 +78,6 @@ Flight::route('PUT /admin/accounts/@id',function($id){
  * )
  */
 Flight::route('GET /student/account', function(){
-    Flight::json(Flight::accountService()->get_by_id(Flight::get('student')['aid']));
+    Flight::json(Flight::accountService()->get_by_id(Flight::get('user')['aid']));
   });
   
-/**
- * @OA\Get(path="/professor/account", tags={"professor", "account"}, security={{"ApiKeyAuth": {}}},
- *     @OA\Response(response="200", description="Fetch professor account")
- * )
- */
-Flight::route('GET /professor/account', function(){
-    Flight::json(Flight::accountService()->get_by_id(Flight::get('student')['aid']));
-  });
