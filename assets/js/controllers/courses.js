@@ -58,7 +58,7 @@ class Course{
             delete d.length;
             delete d.columns;
             delete d.draw;
-            console.log(d);
+            //console.log(d);
           }
         },
         columns: [
