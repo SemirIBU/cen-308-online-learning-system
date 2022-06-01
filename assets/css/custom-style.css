@@ -82,7 +82,7 @@ button:disabled, button[disabled] {
     position: absolute;
     height: 74px;
     width: 105px;
-    background-image: url(../img/logo.png);
+    background-image: url(../img/logo.svg);
     top: 0px;
     right: 0px;
     margin: 10px 35px;
@@ -161,7 +161,115 @@ input.error {
 a:focus, .button:focus, button:focus, .btn:focus {
     /* box-shadow: 0 0 5px 2px #ee390f;
     -webkit-box-shadow: 0 0 5px 2px #ee390f; */
-    background: #ee380f;
-    color: #f7b600;
+    color: #ee380f;
     border-color: #f7b600;
+}
+
+#courses-data-table_wrapper a{
+    color: #f7b600;
+}
+
+.courses-table{
+    margin: 35px;
+}
+@media screen and (min-width:992px){
+    .courses-table{
+        margin: 50px;
+    }
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f7f7f7;
+}
+
+thead{
+    background: #f7b600;
+    color: white;
+}
+
+.btn-primary,.add-course{
+    background: #f7b600;
+    color: white;
+    border:2px solid #f7b600
+}
+.btn-primary:hover,.add-course:hover{
+    background: white;
+    color: #f7b600;
+    border:2px solid #f7b600
+}
+
+.btn-secondary{
+    background: #ee380f;
+    color: white;
+    border:2px solid #ee380f
+}
+.btn-secondary:hover{
+    background: white;
+    color: #ee380f;
+    border:2px solid #ee380f
+}
+
+.main_menu .main-menu-item ul .log_out{
+    margin: 0;
+}
+
+#courses-data-table_wrapper{
+    display: block;
+}
+
+#courses-data-table_length{
+    justify-self: flex-start;
+    display: flex;
+}
+
+#courses-data-table_filter label{
+    display: flex;
+    justify-self: end;
+}
+
+.paginate_button.previous,
+.paginate_button.next{
+    padding: 0 5px;
+}
+
+.paginate_button.disabled a{
+    color: #66666656!important;
+    pointer-events: none;
+}
+
+#courses-data-table_length label select{
+    margin: 0 5px;
+}
+
+#courses-data-table_info{
+    display: none;
+}
+
+.table-responsive{
+    padding: 15px 0;
+}
+
+
+div.dataTables_wrapper div.dataTables_processing{
+    top: 0%!important;
+}
+
+.modal-header{
+    flex-direction: row-reverse;
+}
+
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+    display: none!important;
+}
+
+#courses-data-table{
+    min-width: 100%;
+}
+
+#course-chart-container{
+    display: none;
+}
+
+.special_cource.padding_top .container{
+    padding-top:50px ;
 }

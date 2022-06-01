@@ -6,29 +6,47 @@ class CourseDao extends BaseDao{
   public function __construct(){
     parent::__construct("courses");
   }
-  
-  public function get_courses($search, $offset, $limit, $order){
-    list($order_column, $order_direction)= self::parse_order($order);
-    
-      return $this->query("SELECT * 
-                           FROM courses 
-                           WHERE LOWER(name) LIKE CONCAT('%', :name, '%') 
-                           ORDER BY {$order_column} {$order_direction}
-                           LIMIT ${limit} OFFSET ${offset}", 
-                           ["name" => strtolower($search)]);
+
+  public function get_course_by_account_and_id($account_id, $id){
+    return $this->query_unique("SELECT * FROM courses WHERE account_id = :account_id AND id = :id", ["account_id" => $account_id, "id" => $id]);
   }
 
-  public function add($course){
-    try{
-      return parent::add($course);
-    } catch(\Exception $e){
-      if(str_contains($e->getMessage(), 'courses.uq_course_name')){
-        throw new Exception("Course with the same name already exists", 400, $e);
-      }else{
-        throw $e;
-      }
+  public function count_courses(){
+    $params=[];
+    $query = "SELECT COUNT(*) AS total FROM courses";
+    return $this->query_unique($query, $params);
+  }
+
+ 
+  public function get_courses($account_id, $offset, $limit, $search, $order, $total=TRUE){
+    list($order_column, $order_direction) = self::parse_order($order);
+    $params = [];
+    if ($total){
+      $query = "SELECT COUNT(*) AS total ";
+    }else{
+      $query = "SELECT * ";
     }
+    $query .= "FROM courses
+               WHERE 1 = 1 ";
+
+    if ($account_id){
+      $params["account_id"] = $account_id;
+      $query .= "AND account_id = :account_id ";
+    }
+
+    if (isset($search)){
+      $query .= "AND ( LOWER(name) LIKE CONCAT('%', :search, '%') OR LOWER(description) LIKE CONCAT('%', :search, '%'))";
+      $params['search'] = strtolower($search);
+    }
+
+    if ($total){
+      return $this->query_unique($query, $params);
+    }else{
+      $query .="ORDER BY ${order_column} ${order_direction} ";
+      $query .="LIMIT ${limit} OFFSET ${offset}";
+
+      return $this->query($query, $params);
+    }
+
   }
-
-
 }

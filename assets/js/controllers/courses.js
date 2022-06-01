@@ -14,24 +14,10 @@ class Course{
       });
       AUtils.role_based_elements();
       Course.get_all();
-      Course.chart();
-    }
-  
-    static chart(){
-      RestClient.get("api/user/courses_chart", function(chart_data){
-        new Morris.Line({
-          element: 'course-chart-container',
-          data: chart_data,
-          xkey: 'year',
-          ykeys: ['value'],
-          labels: ['Value']
-        });
-      });
-    }
+    }    
   
     static get_all(){
       $("#courses-data-table").DataTable({
-        order: [[ 0, "desc" ]],
         processing: true,
         serverSide: true,
         bDestroy: true,

@@ -1,0 +1,74 @@
+<section class="special_cource padding_top">
+    <div class="container">
+        
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Courses</h1>
+                    </div>
+                </div>
+
+                <div class="row user-stuff">
+                    <button style="margin-left: 5px;" type="button" class="btn add-course" data-toggle="modal"
+                        data-target="#add-course-modal">
+                        + Add Course
+                    </button>
+                </div>
+
+                <div class="row" style="margin-top: 10px;">
+                    <div class="table-responsive">
+                        <table id="courses-data-table"
+                            class="table responsive table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Course ID</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div id="course-chart-container"> </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="add-course-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form role="form" id="add-course">
+                        <input type="hidden" name="id" />
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Add Course</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="Name of the course" required minlength="3">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea name="description" class="form-control" rows="10" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+
+    </div>
+</section>

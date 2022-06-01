@@ -6,27 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>TeachMe</title>
     <link rel="icon" href="assets/img/favicon.png">
+    
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/jQuerySPApp.css">
     <link rel="stylesheet" href="assets/css/jquery.toast.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom-style.css">
+
+    <link href="./assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="assets/css/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body style="display: none;">
-    <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="#home"> <img src="assets/img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="#home"> <img src="assets/img/logo.svg" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -44,12 +46,15 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#courses">Courses</a>
-                                </li>                                
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#courses-table">Courses table</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact</a>
                                 </li>
-                                <li class="d-none d-lg-block">
-                                    <button onclick="logout();" class="button btn_1">Log out</button>
+                                <li class="nav-item">
+                                    <button onclick="logout();" class="button btn_1 log_out">Log out</button>
                                 </li>
                             </ul>
                         </div>
@@ -58,18 +63,15 @@
             </div>
         </div>
     </header>
-    <!-- Header part end-->
 
-    <!-- banner part start-->
     <main id="jqueryspapp" role="main">
-        <section id="home" data-load="home.html" ></section>
-        <section id="about" data-load="about.html" ></section>
-        <section id="courses" data-load="courses.html" ></section>
-        <section id="contact" data-load="contact.html" ></section>        
-      </main>
-    <!--::blog_part end::-->
+        <section id="home" data-load="home.html"></section>
+        <section id="about" data-load="about.html"></section>
+        <section id="courses" data-load="courses.html"></section>
+        <section id="courses-table" data-load="courses-table.html"></section>
+        <section id="contact" data-load="contact.html"></section>
+    </main>
 
-    <!-- footer part start-->
     <footer class="footer-area">
         <div class="container">
             <div class="row justify-content-between">
@@ -81,31 +83,7 @@
                         <p>But when shot real her hamber her </p>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="single-footer-widget footer_2">
-                        <h4>Newsletter</h4>
-                        <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
-                        </p>
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Enter email address'
-                                        onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter email address'">
-                                    <div class="input-group-append">
-                                        <button class="btn btn_1" type="button"><i class="ti-angle-right"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="social_icon">
-                            <a href="#"> <i class="ti-facebook"></i> </a>
-                            <a href="#"> <i class="ti-twitter-alt"></i> </a>
-                            <a href="#"> <i class="ti-instagram"></i> </a>
-                            <a href="#"> <i class="ti-skype"></i> </a>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-xl-3 col-sm-6 col-md-4">
                     <div class="single-footer-widget footer_2">
                         <h4>Contact us</h4>
@@ -119,57 +97,43 @@
             </div>
 
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright_part_text text-center">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </footer>
-    <!-- footer part end-->
 
-    <script src="assets/js/jquery-1.12.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/masonry.pkgd.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/slick.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
     <script src="assets/js/jQuerySPApp.js"></script>
-    <script src="assets/js/jquery.toast.min.js"></script>
-    <script src="assets/js/custom.js"></script>
-    
-    <script type="text/javascript">
-        $(document).ready(function() {
-          var app = $.jQuerySPApp({defaultView  : "home"});   
-          app.run();
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-          if (!window.localStorage.getItem("token")){
-            window.location = "login.html";
-        }else{
-            $('body').show();
-        }
+    
+
+    <script src="assets/js/controllers/courses.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/restClient.js"></script>
+
+    <script src="assets/js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var app = $.jQuerySPApp({ defaultView: "home" }); // initialize   
+            app.route({view : "courses-table", load : "courses-table.html", onReady: function() { Course.init() }});    
+            app.run();
+
+            if (!window.localStorage.getItem("token")) {
+                window.location = "login.html";
+            } else {
+                $('body').show();
+            }
         });
-        function logout(){
+        function logout() {
             window.localStorage.clear();
             window.location = "login.html";
         }
 
-        
-      </script>
+
+    </script>
 </body>
 
 </html>
