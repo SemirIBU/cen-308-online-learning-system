@@ -5,7 +5,7 @@ require_once dirname(__FILE__).'/../vendor/autoload.php';
 
 //include dao classes
 require_once dirname(__FILE__).'/services/AccountService.class.php';
-require_once dirname(__FILE__).'/services/UserService.class.php';
+require_once dirname(__FILE__).'/services/StudentService.class.php';
 require_once dirname(__FILE__).'/services/CourseService.class.php';
 require_once dirname(__FILE__).'/config.php';
 
@@ -34,7 +34,7 @@ Flight::map('query', function($name, $default_value = NULL){
 
 /*register Business Logic layer*/
 Flight::register('accountService', 'AccountService');
-Flight::register('userService', 'UserService');
+Flight::register('studentService', 'StudentService');
 Flight::register('courseService', 'CourseService');
 
 /* utility function for getting header parameters */
@@ -62,7 +62,7 @@ Flight::route('GET /',function(){
 /*include routes*/
 require_once dirname(__FILE__).'/routes/middleware.php';
 require_once dirname(__FILE__).'/routes/accounts.php';
-require_once dirname(__FILE__).'/routes/users.php';
+require_once dirname(__FILE__).'/routes/students.php';
 require_once dirname(__FILE__).'/routes/courses.php';
 
 

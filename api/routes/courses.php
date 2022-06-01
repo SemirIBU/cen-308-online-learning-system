@@ -1,15 +1,15 @@
 <?php
 /**
- * @OA\Get(path="/user/courses", tags={"x-user", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Get(path="/student/courses", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts. Case insensitive search."),
  *     @OA\Parameter(type="string", in="query", name="order", default="-id", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
- *     @OA\Response(response="200", description="List courses for user")
+ *     @OA\Response(response="200", description="List courses for student")
  * )
  */
-Flight::route('GET /user/courses', function(){
-  $account_id = Flight::get('user')['aid'];
+Flight::route('GET /student/courses', function(){
+  $account_id = Flight::get('student')['aid'];
   $offset = Flight::query('offset', 0);
   $limit = Flight::query('limit', 25);
   $search = Flight::query('search');
@@ -20,32 +20,32 @@ Flight::route('GET /user/courses', function(){
   Flight::json(Flight::courseService()->get_courses($account_id, $offset, $limit, $search, $order));
 });
 /**
- * @OA\Get(path="/user/count", tags={"x-user", "courses"}, security={{"ApiKeyAuth": {}}},
- *     @OA\Response(response="200", description="Count courses for user")
+ * @OA\Get(path="/student/count", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Response(response="200", description="Count courses for student")
  * )
  */
-Flight::route('GET /user/count', function(){
+Flight::route('GET /student/count', function(){
   Flight::json(Flight::courseService()->count_courses());
 });
 
 /**
- * @OA\Get(path="/user/courses/{id}", tags={"x-user", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Get(path="/student/courses/{id}", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
  *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="Id of course"),
  *     @OA\Response(response="200", description="Fetch individual course")
  * )
  */
-Flight::route('GET /user/courses/@id', function($id){
+Flight::route('GET /student/courses/@id', function($id){
   /*$course = Flight::courseService()->get_by_id($id);
-  if ($course['account_id'] != Flight::get('user')['aid']){
+  if ($course['account_id'] != Flight::get('student')['aid']){
     Flight::json([]);
   }else{
     Flight::json($course);
   }*/
-  Flight::json(Flight::courseService()->get_course_by_account_and_id(Flight::get('user')['aid'], $id));
+  Flight::json(Flight::courseService()->get_course_by_account_and_id(Flight::get('student')['aid'], $id));
 });
 
 /**
- * @OA\Post(path="/user/courses", tags={"x-user", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Post(path="/student/courses", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
  *   @OA\RequestBody(description="Basic course info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
@@ -57,12 +57,12 @@ Flight::route('GET /user/courses/@id', function($id){
  *  @OA\Response(response="200", description="Saved course")
  * )
  */
-Flight::route('POST /user/courses', function(){
-  Flight::json(Flight::courseService()->add_course(Flight::get('user'), Flight::request()->data->getData()));
+Flight::route('POST /student/courses', function(){
+  Flight::json(Flight::courseService()->add_course(Flight::get('student'), Flight::request()->data->getData()));
 });
 
 /**
- * @OA\Put(path="/user/courses/{id}", tags={"x-user", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Put(path="/student/courses/{id}", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
  *   @OA\Parameter(type="integer", in="path", name="id", default=1),
  *   @OA\RequestBody(description="Basic course info that is going to be updated", required=true,
  *       @OA\MediaType(mediaType="application/json",
@@ -75,18 +75,18 @@ Flight::route('POST /user/courses', function(){
  *     @OA\Response(response="200", description="Update course")
  * )
  */
-Flight::route('PUT /user/courses/@id', function($id){
-  Flight::json(Flight::courseService()->update_course(Flight::get('user'), intval($id), Flight::request()->data->getData()));
+Flight::route('PUT /student/courses/@id', function($id){
+  Flight::json(Flight::courseService()->update_course(Flight::get('student'), intval($id), Flight::request()->data->getData()));
 });
 
 /**
- * @OA\Get(path="/admin/courses", tags={"x-admin", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Get(path="/admin/courses", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
  *     @OA\Parameter(type="integer", in="query", name="account_id", default=0, description="Account ID"),
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts. Case insensitive search."),
  *     @OA\Parameter(type="string", in="query", name="order", default="-id", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
- *     @OA\Response(response="200", description="List courses for user")
+ *     @OA\Response(response="200", description="List courses for student")
  * )
  */
 Flight::route('GET /admin/courses', function(){
@@ -100,7 +100,7 @@ Flight::route('GET /admin/courses', function(){
 });
 
 /**
- * @OA\Get(path="/admin/courses/{id}", tags={"x-admin", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Get(path="/admin/courses/{id}", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
  *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="Id of course"),
  *     @OA\Response(response="200", description="Fetch individual course")
  * )
@@ -110,7 +110,7 @@ Flight::route('GET /admin/courses/@id', function($id){
 });
 
 /**
- * @OA\Post(path="/admin/courses", tags={"x-admin", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Post(path="/admin/courses", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
  *   @OA\RequestBody(description="Basic course info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
@@ -128,7 +128,7 @@ Flight::route('POST /admin/courses', function(){
 });
 
 /**
- * @OA\Put(path="/admin/courses/{id}", tags={"x-admin", "courses"}, security={{"ApiKeyAuth": {}}},
+ * @OA\Put(path="/admin/courses/{id}", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
  *   @OA\Parameter(type="integer", in="path", name="id", default=1),
  *   @OA\RequestBody(description="Basic course info that is going to be updated", required=true,
  *       @OA\MediaType(mediaType="application/json",

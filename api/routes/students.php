@@ -2,24 +2,24 @@
 /**
  * @OA\Post(path="/register", tags={"login"},     
  *     @OA\RequestBody(
- *          description="Basic user info", required="true",
+ *          description="Basic student info", required="true",
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
  *    				 @OA\Property(property="account", required="true", type="string", example="My test account", description="Name of the account"),
- *    				 @OA\Property(property="name", required="true", type="string", example="First Last name", description="Name of the user"),
- *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="User's email address"),
+ *    				 @OA\Property(property="name", required="true", type="string", example="First Last name", description="Name of the student"),
+ *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="student's email address"),
  *    				 @OA\Property(property="password", required="true", type="string", example="12345", description="Pasword"),
  *             )
  *          )
  *     ),
- *     @OA\Response(response="200", description="Message that user has been created.")
+ *     @OA\Response(response="200", description="Message that student has been created.")
  *
  * )
  */
 Flight::route('POST /register', function(){
   $data = Flight::request()->data->getData();
-  Flight::userService()->register($data);
+  Flight::studentService()->register($data);
   
   Flight::json(["message" => "Confirmation email has been sent, please check your inbox"]);
 });
@@ -27,31 +27,31 @@ Flight::route('POST /register', function(){
 /**
  * @OA\Post(path="/login", tags={"login"},     
  *     @OA\RequestBody(
- *          description="Basic user info", required="true",
+ *          description="Basic student info", required="true",
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="User's email address"),
+ *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="student's email address"),
  *    				 @OA\Property(property="password", required="true", type="string", example="12345", description="Pasword"),
  *             )
  *          )
  *     ),
- *     @OA\Response(response="200", description="Message that user has been created.")
+ *     @OA\Response(response="200", description="Message that student has been created.")
  *
  * )
  */
 Flight::route('POST /login', function(){
-  Flight::json(Flight::jwt(Flight::userService()->login(Flight::request()->data->getData())));
+  Flight::json(Flight::jwt(Flight::studentService()->login(Flight::request()->data->getData())));
 });
 
 /**
- * @OA\Post(path="/forgot", tags={"login"}, description="Send recovery URL to users email address",
+ * @OA\Post(path="/forgot", tags={"login"}, description="Send recovery URL to students email address",
  *     @OA\RequestBody(
- *          description="Basic user info", required="true",
+ *          description="Basic student info", required="true",
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="User's email address"),
+ *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="student's email address"),
  *             )
  *          )
  *     ),
@@ -61,14 +61,14 @@ Flight::route('POST /login', function(){
  */
 Flight::route('POST /forgot', function(){
   $data = Flight::request()->data->getData();
-  Flight::userService()->forgot($data);
+  Flight::studentService()->forgot($data);
   Flight::json(["message" => "Recovery link has been sent to your email address"]);
 });
 
 /**
- * @OA\Post(path="/reset", tags={"login"}, description="Reset users password using recovery token",
+ * @OA\Post(path="/reset", tags={"login"}, description="Reset students password using recovery token",
  *     @OA\RequestBody(
- *          description="Basic user info", required="true",
+ *          description="Basic student info", required="true",
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
@@ -77,12 +77,12 @@ Flight::route('POST /forgot', function(){
  *             )
  *          )
  *     ),
- *     @OA\Response(response="200", description="Message that user has changed password.")
+ *     @OA\Response(response="200", description="Message that student has changed password.")
  *
  * )
  */
 Flight::route('POST /reset', function(){
-  Flight::json(Flight::jwt(Flight::userService()->reset(Flight::request()->data->getData())));
+  Flight::json(Flight::jwt(Flight::studentService()->reset(Flight::request()->data->getData())));
 });
 
 /**
@@ -92,10 +92,10 @@ Flight::route('POST /reset', function(){
  * )
  */
 Flight::route('GET /confirm/@token', function($token){
-  Flight::json(Flight::jwt(Flight::userService()->confirm($token)));
+  Flight::json(Flight::jwt(Flight::studentService()->confirm($token)));
 });
 
 Flight::route('GET /@id', function($id){
-  $user = Flight::userService()->get_by_id($id);
-  Flight::json($user);
+  $student = Flight::studentService()->get_by_id($id);
+  Flight::json($student);
 });

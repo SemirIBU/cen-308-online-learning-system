@@ -23,12 +23,12 @@ class CourseService extends BaseService{
 
 
 
-  public function add_course($user, $course){
+  public function add_course($student, $course){
     try {
       $data = [
         "name" => $course["name"],
         "description" => $course["description"],        
-        "account_id" => $user['aid']
+        "account_id" => $student['aid']
       ];
       return parent::add($data);
     } catch (\Exception $e) {
@@ -40,9 +40,9 @@ class CourseService extends BaseService{
     }
   }
 
-  public function update_course($user, $id, $course){
+  public function update_course($student, $id, $course){
     $db_template = $this->dao->get_by_id($id);
-    if ($db_template['account_id'] != $user['aid']){
+    if ($db_template['account_id'] != $student['aid']){
       throw new Exception("Invalid course", 403);
     }
     return $this->update($id, $course);
