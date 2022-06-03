@@ -41,7 +41,7 @@ class Course{
               "infoFiltered": ""
         },
         ajax: {
-          url: "api/user/courses",
+          url: "api/student/courses",
           type: "GET",
           beforeSend: function(xhr){
             xhr.setRequestHeader('Authentication', localStorage.getItem("token"));
@@ -64,7 +64,7 @@ class Course{
         columns: [
               { "data": "id",
                 "render": function ( data, type, row, meta ) {
-                  return '<div style="min-width: 60px;"> <span class="badge">'+data+'</span><a class="pull-right" style="font-size: 15px; cursor: pointer;" onclick="Course.pre_edit('+data+')"><i class="fa fa-edit"></i></a> </div>';
+                  return '<div class="course-id-field" style="min-width: 60px;"> <span class="badge">'+data+'</span><a class="pull-right" style="font-size: 15px; cursor: pointer;" onclick="Course.pre_edit('+data+')"><i class="edit-icon"></i></a> </div>';
                 }
               },
               { "data": "name" },              
@@ -74,7 +74,7 @@ class Course{
     }
   
     static add(course){
-      RestClient.post("api/user/courses", course, function(data){
+      RestClient.post("api/admin/courses", course, function(data){
         toastr.success("Course has been added");
         Course.get_all();
         $("#add-course").trigger("reset");
@@ -83,7 +83,7 @@ class Course{
     }
   
     static update(course){
-      RestClient.put("api/user/courses/"+course.id, course, function(data){
+      RestClient.put("api/admin/courses/"+course.id, course, function(data){
         toastr.success("Course has been updated");
         Course.get_all();
         $("#add-course").trigger("reset");
@@ -93,7 +93,7 @@ class Course{
     }
   
     static pre_edit(id){
-      RestClient.get("api/user/courses/"+id, function(data){
+      RestClient.get("api/admin/courses/"+id, function(data){
         AUtils.json2form("#add-course", data);
         $("#add-course-modal").modal("show");
       });

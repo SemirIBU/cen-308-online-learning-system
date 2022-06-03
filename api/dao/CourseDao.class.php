@@ -18,7 +18,7 @@ class CourseDao extends BaseDao{
   }
 
  
-  public function get_courses($account_id, $offset, $limit, $search, $order, $total=TRUE){
+  public function get_courses($account_id, $offset, $limit, $search, $order, $total=FALSE){
     list($order_column, $order_direction) = self::parse_order($order);
     $params = [];
     if ($total){

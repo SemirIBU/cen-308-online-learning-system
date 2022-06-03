@@ -25,12 +25,15 @@ class AUtils{
   }
 
   static role_based_elements(){
-    var user_info = AUtils.parse_jwt(window.localStorage.getItem("token"));
-    if (user_info.r == "USER_READ_ONLY"){
-      $(".user-stuff").remove();
+    var user_info = AUtils.parse_jwt(window.localStorage.getItem("token"));    
+    if (user_info.r != "professor"){
+      $(".professor-content").remove();
     }
-    if (user_info.r != "ADMIN"){
-      $(".admin-stuff").remove();
+    if (user_info.r != "admin"){
+      $(".admin-content").remove();
+    }
+    if (user_info.r != "test"){
+      $(".test-content").remove();
     }
   }
 }

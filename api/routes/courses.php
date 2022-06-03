@@ -19,14 +19,7 @@ Flight::route('GET /student/courses', function(){
   header('total-records: ' . $total['total']);
   Flight::json(Flight::courseService()->get_courses($account_id, $offset, $limit, $search, $order));
 });
-/**
- * @OA\Get(path="/student/count", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
- *     @OA\Response(response="200", description="Count courses for student")
- * )
- */
-Flight::route('GET /student/count', function(){
-  Flight::json(Flight::courseService()->count_courses());
-});
+
 
 /**
  * @OA\Get(path="/student/courses/{id}", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
@@ -80,7 +73,7 @@ Flight::route('PUT /student/courses/@id', function($id){
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts. Case insensitive search."),
  *     @OA\Parameter(type="string", in="query", name="order", default="-id", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
- *     @OA\Response(response="200", description="List courses for student")
+ *     @OA\Response(response="200", description="List courses for admins")
  * )
  */
 Flight::route('GET /admin/courses', function(){

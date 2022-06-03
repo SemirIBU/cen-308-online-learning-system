@@ -273,3 +273,18 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 .special_cource.padding_top .container{
     padding-top:50px ;
 }
+
+.edit-icon{
+    content: url('../img/icons/edit.svg');
+    height: 20px;
+    height: 30px;
+    background: #f7b600;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.course-id-field{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
