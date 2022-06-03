@@ -47,6 +47,9 @@
                                     <a class="nav-link" href="#contact">Contact</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="#profile">Profile</a>
+                                </li>
+                                <li class="nav-item">
                                     <button onclick="logout();" class="button btn_1 log_out">Log out</button>
                                 </li>
                             </ul>
@@ -61,6 +64,7 @@
         <section id="home" data-load="home.html"></section>
         <section id="courses-table" data-load="courses-table.html"></section>
         <section id="contact" data-load="contact.html"></section>
+        <section id="profile" data-load="profile.html"></section>
     </main>
 
     <footer class="footer-area">
@@ -97,19 +101,24 @@
 
     
 
-    <script src="assets/js/controllers/courses.js"></script>
+   
     <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/restClient.js"></script>
+    
 
     <script src="assets/js/dataTables/jquery.dataTables.min.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/restClient.js"></script>
+    <script src="assets/js/controllers/courses.js"></script>
+    <script src="assets/js/controllers/profile.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             var app = $.jQuerySPApp({ defaultView: "home" }); // initialize   
             app.route({view : "courses-table", load : "courses-table.html", onReady: function() { Course.init() }});    
+            app.route({view : "profile", load : "profile.html", onReady: function() { Profile.init() }});    
             app.run();
 
             if (!window.localStorage.getItem("token")) {

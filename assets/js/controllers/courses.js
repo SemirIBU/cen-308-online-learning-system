@@ -73,8 +73,8 @@ class Course{
       });
     }
   
-    static add(email_template){
-      RestClient.post("api/user/courses", email_template, function(data){
+    static add(course){
+      RestClient.post("api/user/courses", course, function(data){
         toastr.success("Course has been added");
         Course.get_all();
         $("#add-course").trigger("reset");
@@ -82,8 +82,8 @@ class Course{
       });
     }
   
-    static update(email_template){
-      RestClient.put("api/user/courses/"+email_template.id, email_template, function(data){
+    static update(course){
+      RestClient.put("api/user/courses/"+course.id, course, function(data){
         toastr.success("Course has been updated");
         Course.get_all();
         $("#add-course").trigger("reset");
