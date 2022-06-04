@@ -165,7 +165,9 @@ a:focus, .button:focus, button:focus, .btn:focus {
     border-color: #f7b600;
 }
 
-#courses-data-table_wrapper a{
+#courses-data-table_wrapper a,
+#students-data-table_wrapper a
+{
     color: #f7b600;
 }
 
@@ -213,16 +215,22 @@ thead{
     margin: 0;
 }
 
-#courses-data-table_wrapper{
+#courses-data-table_wrapper,
+#students-data-table_wrapper
+{
     display: block;
 }
 
-#courses-data-table_length{
+#courses-data-table_length,
+#students-data-table_length
+{
     justify-self: flex-start;
     display: flex;
 }
 
-#courses-data-table_filter label{
+#courses-data-table_filter label,
+#students-data-table_filter label
+{
     display: flex;
     justify-self: end;
 }
@@ -237,11 +245,15 @@ thead{
     pointer-events: none;
 }
 
-#courses-data-table_length label select{
+#courses-data-table_length label select,
+#students-data-table_length label select
+{
     margin: 0 5px;
 }
 
-#courses-data-table_info{
+#courses-data-table_info,
+#students-data-table_info
+{
     display: none;
 }
 
@@ -262,7 +274,9 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
     display: none!important;
 }
 
-#courses-data-table{
+#courses-data-table,
+#students-data-table
+{
     min-width: 100%;
 }
 
@@ -308,3 +322,5 @@ div.dataTables_wrapper div.dataTables_processing {
     text-align: center;
     padding: 1em 0;
 }
+
+

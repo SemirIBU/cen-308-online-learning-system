@@ -19,4 +19,15 @@ class StudentDao extends BaseDao{
     return $this->query_unique("SELECT * FROM students WHERE token = :token", ["token" => $token]);
   }
 
+  public function get_students($search, $offset, $limit, $order){
+    list($order_column, $order_direction)= self::parse_order($order);
+    
+      return $this->query("SELECT * 
+                           FROM students 
+                           WHERE LOWER(name) LIKE CONCAT('%', :name, '%') AND LOWER(role) LIKE 'student'
+                           ORDER BY {$order_column} {$order_direction}
+                           LIMIT ${limit} OFFSET ${offset}", 
+                           ["name" => strtolower($search)]);
+  }
+
 }

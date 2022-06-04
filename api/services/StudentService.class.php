@@ -1,51 +1,54 @@
 <?php
-require_once dirname(__FILE__). '/BaseService.class.php';
-require_once dirname(__FILE__).'/../dao/studentDao.class.php';
-require_once dirname(__FILE__).'/../dao/AccountDao.class.php';
+require_once dirname(__FILE__) . '/BaseService.class.php';
+require_once dirname(__FILE__) . '/../dao/studentDao.class.php';
+require_once dirname(__FILE__) . '/../dao/AccountDao.class.php';
 
-require_once dirname(__FILE__).'/../clients/SMTPClient.class.php';
-require_once dirname(__FILE__).'/../config.php';
+require_once dirname(__FILE__) . '/../clients/SMTPClient.class.php';
+require_once dirname(__FILE__) . '/../config.php';
 
 
 
-class studentservice extends BaseService{
+class studentservice extends BaseService
+{
 
   private $accountDao;
 
-  public function __construct(){
+  public function __construct()
+  {
     $this->dao = new studentDao();
     $this->accountDao = new AccountDao();
     $this->smtpClient = new SMTPClient();
   }
 
-  public function reset($student){
+  public function reset($student)
+  {
     $db_student = $this->dao->get_student_by_token($student['token']);
 
     if (!isset($db_student['id'])) throw new Exception("Invalid token", 400);
 
-    if(strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) > 300) throw new Exception("Token expired", 400);
+    if (strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) > 300) throw new Exception("Token expired", 400);
 
-    $this->dao->update($db_student['id'],['password' => md5($student['password']), 'token' => NULL]);
+    $this->dao->update($db_student['id'], ['password' => md5($student['password']), 'token' => NULL]);
 
     return $db_student;
-
   }
-  public function forgot($student){
+  public function forgot($student)
+  {
     $db_student = $this->dao->get_student_by_email($student['email']);
 
-    if(!isset($db_student['id'])) throw new Exception("student doesn't exist", 400);
+    if (!isset($db_student['id'])) throw new Exception("student doesn't exist", 400);
 
-    if(strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) < 300) throw new Exception("Token already sent", 400);
+    if (strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) < 300) throw new Exception("Token already sent", 400);
 
     //generate token and save it to db
-    $db_student = $this->update($db_student['id'],['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
-    
-    //send email
-    if(Config::ENVIRONMENT()!='local') $this->smtpClient->send_student_recovery_token($db_student);
+    $db_student = $this->update($db_student['id'], ['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
 
+    //send email
+    if (Config::ENVIRONMENT() != 'local') $this->smtpClient->send_student_recovery_token($db_student);
   }
 
-  public function login($student){
+  public function login($student)
+  {
     $db_student = $this->dao->get_student_by_email($student['email']);
 
     if (!isset($db_student['id'])) throw new Exception("student doesn't exist", 400);
@@ -60,7 +63,8 @@ class studentservice extends BaseService{
     return $db_student;
   }
 
-  public function register($student){
+  public function register($student)
+  {
     if (!isset($student['account'])) throw new Exception("Account field is required");
 
     try {
@@ -84,19 +88,20 @@ class studentservice extends BaseService{
       $this->dao->commit();
     } catch (\Exception $e) {
       $this->dao->rollBack();
-      if(str_contains($e->getMessage(), 'students.uq_student_email')){
+      if (str_contains($e->getMessage(), 'students.uq_student_email')) {
         throw new Exception("Account with the same email already exists", 400, $e);
-      }else{
+      } else {
         throw $e;
       }
     }
 
-    if(Config::ENVIRONMENT()!='local') $this->smtpClient->send_register_student_token($student);
+    if (Config::ENVIRONMENT() != 'local') $this->smtpClient->send_register_student_token($student);
 
     return $student;
   }
 
-  public function confirm($token){
+  public function confirm($token)
+  {
     $student = $this->dao->get_student_by_token($token);
 
     if (!isset($student['id'])) throw new Exception("Invalid token", 400);
@@ -107,5 +112,8 @@ class studentservice extends BaseService{
     return $student;
   }
 
+  public function get_students($search, $offset, $limit, $order)
+  {
+      return $this->dao->get_students($search, $offset, $limit, $order);
+  }
 }
-?>

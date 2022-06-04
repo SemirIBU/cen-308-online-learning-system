@@ -42,7 +42,10 @@
                                     <a class="nav-link" href="#home">Home</a>
                                 </li>                               
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#courses-table">Courses table</a>
+                                    <a class="nav-link" href="#courses">Courses</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#students">Students</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact</a>
@@ -63,7 +66,8 @@
 
     <main id="jqueryspapp" role="main">
         <section id="home" data-load="home.html"></section>
-        <section id="courses-table" data-load="courses-table.html"></section>
+        <section id="courses" data-load="courses.html"></section>
+        <section id="students" data-load="students.html"></section>
         <section id="contact" data-load="contact.html"></section>
         <section id="profile" data-load="profile.html"></section>
     </main>
@@ -113,13 +117,15 @@
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/restClient.js"></script>
     <script src="assets/js/controllers/courses.js"></script>
+    <script src="assets/js/controllers/students.js"></script>
     <script src="assets/js/controllers/profile.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             var app = $.jQuerySPApp({ defaultView: "home" }); // initialize   
-            app.route({view : "courses-table", load : "courses-table.html", onReady: function() { Course.init() }});    
+            app.route({view : "courses", load : "courses.html", onReady: function() { Course.init() }});    
             app.route({view : "profile", load : "profile.html", onReady: function() { Profile.init() }});    
+            app.route({view : "students", load : "students.html", onReady: function() { Student.init() }});    
             app.run();
 
             if (!window.localStorage.getItem("token")) {
