@@ -8,4 +8,3 @@
 Flight::route('GET /admin/account', function () {
     Flight::json(Flight::accountService()->get_by_id(Flight::get('user')['aid']));
 });
-?>

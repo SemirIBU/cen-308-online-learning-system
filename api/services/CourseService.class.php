@@ -40,11 +40,8 @@ class CourseService extends BaseService{
     }
   }
 
-  public function update_course($student, $id, $course){
-    $db_template = $this->dao->get_by_id($id);
-    if ($db_template['account_id'] != $student['aid']){
-      throw new Exception("Invalid course", 403);
-    }
+  public function update_course($id, $course){
+    
     return $this->update($id, $course);
   }
 }

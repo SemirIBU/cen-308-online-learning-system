@@ -27,7 +27,7 @@ class CourseDao extends BaseDao{
       $query = "SELECT * ";
     }
     $query .= "FROM courses
-               WHERE 1 = 1 ";
+               WHERE status = 'active' ";
 
     if ($account_id){
       $params["account_id"] = $account_id;

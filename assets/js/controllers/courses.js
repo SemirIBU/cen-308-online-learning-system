@@ -1,10 +1,15 @@
 class Course{
 
     static init(){
+      $('.btn.add-course').click(function (){
+        $('#modalLabel').html('Add course');
+        $('.modal-footer button[type="submit"]').html('Add course');
+      });
       $("#add-course").validate({
         submitHandler: function(form, event) {
           event.preventDefault();
           var data = AUtils.form2json($(form));
+          $('#courses-data-table').hide();
           if (data.id){
             Course.update(data);
           }else{
@@ -14,6 +19,7 @@ class Course{
       });
       AUtils.role_based_elements();
       Course.get_all();
+
     }    
   
     static get_all(){
@@ -64,17 +70,18 @@ class Course{
         columns: [
               { "data": "id",
                 "render": function ( data, type, row, meta ) {
-                  return '<div class="course-id-field" style="min-width: 60px;"> <span class="badge">'+data+'</span><a class="pull-right" style="font-size: 15px; cursor: pointer;" onclick="Course.pre_edit('+data+')"><i class="edit-icon"></i></a> </div>';
+                  return '<div class="course-id-field" style="min-width: 60px;"> <span class="badge">'+data+'</span><div><a class="pull-right" style="font-size: 15px; cursor: pointer;" onclick="Course.pre_edit('+data+')"><i class="edit-icon"></i></a><a class="pull-left" style="font-size: 15px; cursor: pointer;" onclick="Course.delete('+data+')"><i class="delete-icon"></i></a></div>  </div>';
                 }
               },
               { "data": "name" },              
               { "data": "description" }
           ]
       });
+      $('#courses-data-table').show();
     }
   
     static add(course){
-      RestClient.post("api/admin/courses", course, function(data){
+      RestClient.post("api/admin/courses", course, function(data){        
         toastr.success("Course has been added");
         Course.get_all();
         $("#add-course").trigger("reset");
@@ -95,7 +102,15 @@ class Course{
     static pre_edit(id){
       RestClient.get("api/admin/courses/"+id, function(data){
         AUtils.json2form("#add-course", data);
+        $('#modalLabel').html('Update course');
+        $('.modal-footer button[type="submit"]').html('Update course');
         $("#add-course-modal").modal("show");
+      });
+    }
+    static delete(id){
+      RestClient.put("api/admin/courses/"+id,{ status: 'inactive'}  , function(data){            
+        toastr.success("Course has been deleted");
+        Course.get_all();
       });
     }
   }

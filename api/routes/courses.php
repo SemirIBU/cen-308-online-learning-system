@@ -48,23 +48,6 @@ Flight::route('POST /student/courses', function(){
   Flight::json(Flight::courseService()->add_course(Flight::get('user'), Flight::request()->data->getData()));
 });
 
-/**
- * @OA\Put(path="/student/courses/{id}", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
- *   @OA\Parameter(type="integer", in="path", name="id", default=1),
- *   @OA\RequestBody(description="Basic course info that is going to be updated", required=true,
- *       @OA\MediaType(mediaType="application/json",
- *    			@OA\Schema(
- *    				 @OA\Property(property="name", required="true", type="string", example="name",	description="Name of the Course" ),
- *    				 @OA\Property(property="description", required="true", type="string", example="description",	description="Course description" ),
- *          )
- *       )
- *     ),
- *     @OA\Response(response="200", description="Update course")
- * )
- */
-Flight::route('PUT /student/courses/@id', function($id){
-  Flight::json(Flight::courseService()->update_course(Flight::get('user'), intval($id), Flight::request()->data->getData()));
-});
 
 /**
  * @OA\Get(path="/admin/courses", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
@@ -73,11 +56,11 @@ Flight::route('PUT /student/courses/@id', function($id){
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts. Case insensitive search."),
  *     @OA\Parameter(type="string", in="query", name="order", default="-id", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
- *     @OA\Response(response="200", description="List courses for admins")
+ *     @OA\Response(response="200", description="List all active courses")
  * )
  */
 Flight::route('GET /admin/courses', function(){
-  $account_id = Flight::query('account_id');
+  $account_id = 0;
   $offset = Flight::query('offset', 0);
   $limit = Flight::query('limit', 25);
   $search = Flight::query('search');
@@ -120,8 +103,9 @@ Flight::route('POST /admin/courses', function(){
  *   @OA\RequestBody(description="Basic course info that is going to be updated", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="name", required="true", type="string", example="name",	description="Name of the course" ),
- *    				 @OA\Property(property="description", required="true", type="string", example="description",	description="Course description" ),
+ *    				 @OA\Property(property="name", required="false", type="string", example="name",	description="Name of the Course" ),
+ *    				 @OA\Property(property="description", required="false", type="string", example="description",	description="Course description" ),
+ *    				 @OA\Property(property="status", required="false", type="string", example="inactive",	description="Course status" ),
  *          )
  *       )
  *     ),
@@ -129,7 +113,6 @@ Flight::route('POST /admin/courses', function(){
  * )
  */
 Flight::route('PUT /admin/courses/@id', function($id){
-  Flight::json(Flight::courseService()->update($id, Flight::request()->data->getData()));
+  Flight::json(Flight::courseService()->update_course(intval($id), Flight::request()->data->getData()));
 });
-
 ?>
