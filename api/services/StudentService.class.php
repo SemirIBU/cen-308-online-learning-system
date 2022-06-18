@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/BaseService.class.php';
-require_once dirname(__FILE__) . '/../dao/studentDao.class.php';
+require_once dirname(__FILE__) . '/../dao/StudentDao.class.php';
 require_once dirname(__FILE__) . '/../dao/AccountDao.class.php';
 
 require_once dirname(__FILE__) . '/../clients/SMTPClient.class.php';
