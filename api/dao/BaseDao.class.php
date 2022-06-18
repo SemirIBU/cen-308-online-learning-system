@@ -9,7 +9,7 @@ require_once dirname(__FILE__)."/../config.php";
 * @author Admir Sahman
 */
 class BaseDao {
-  protected $connection;
+  private $connection;
 
   private $table;
 
@@ -39,14 +39,13 @@ class BaseDao {
 
   public function __construct($table){
     $this->table = $table;
-    try {
-      $this->connection = new PDO("mysql:host=".Config::DB_HOST().";port=".Config::DB_PORT().";dbname=".Config::DB_SCHEME(), Config::DB_USERNAME(), Config::DB_PASSWORD());
-      $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-    } catch(PDOException $e) {
-      throw $e;
-    }
+    $servername = Config::DB_HOST();
+    $username = Config::DB_USERNAME();
+    $password = Config::DB_PASSWORD();
+    $schema = Config::DB_SCHEME();
+    $port = Config::DB_PORT();
+    $this->connection = new PDO("mysql:host=$servername;dbname=$schema;port=$port", $username, $password);
+    $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   }
 
   protected function insert($table, $entity){
