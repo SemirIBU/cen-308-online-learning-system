@@ -16,12 +16,12 @@ if(Config::ENVIRONMENT()=='local'){
     error_reporting(E_ALL);
 }
 
-// Flight::set('flight.log_errors', TRUE);
-// // if(Config::ENVIRONMENT()!='local'){
-//     Flight::map('error', function(Exception $ex){
-//         Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
-//     });    
-// // }
+Flight::set('flight.log_errors', TRUE);
+// if(Config::ENVIRONMENT()!='local'){
+    Flight::map('error', function(Exception $ex){
+        Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
+    });    
+// }
 
 Flight::map('query', function($name, $default_value = NULL){
     $request = Flight::request();
