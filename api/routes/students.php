@@ -101,5 +101,5 @@ Flight::route('GET /confirm/@token', function($token){
  * )
  */
 Flight::route('GET /student/profile', function(){
-  Flight::json(Flight::studentService()->get_student_profile_by_aid(Flight::get('user')['aid']));
+  Flight::json(Flight::studentService()->get_by_aid(Flight::get('user')['aid']));
 });

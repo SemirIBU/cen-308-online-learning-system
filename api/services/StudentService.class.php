@@ -8,7 +8,7 @@ require_once dirname(__FILE__) . '/../config.php';
 
 
 
-class studentservice extends BaseService
+class StudentService extends BaseService
 {
 
   private $accountDao;
@@ -116,8 +116,5 @@ class studentservice extends BaseService
   {
       return $this->dao->get_students($search, $offset, $limit, $order);
   }
-  
-  public function get_student_profile_by_aid($aid){
-    return $this->dao->get_student_profile_by_aid($aid);
-  }
+
 }

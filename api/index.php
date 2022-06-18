@@ -7,6 +7,7 @@ require_once dirname(__FILE__).'/../vendor/autoload.php';
 require_once dirname(__FILE__).'/services/AccountService.class.php';
 require_once dirname(__FILE__).'/services/StudentService.class.php';
 require_once dirname(__FILE__).'/services/CourseService.class.php';
+require_once dirname(__FILE__).'/services/ProfessorService.class.php';
 require_once dirname(__FILE__).'/config.php';
 
 if(Config::ENVIRONMENT()=='local'){
@@ -15,12 +16,12 @@ if(Config::ENVIRONMENT()=='local'){
     error_reporting(E_ALL);
 }
 
-Flight::set('flight.log_errors', TRUE);
-// if(Config::ENVIRONMENT()!='local'){
-    Flight::map('error', function(Exception $ex){
-        Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
-    });    
-// }
+// Flight::set('flight.log_errors', TRUE);
+// // if(Config::ENVIRONMENT()!='local'){
+//     Flight::map('error', function(Exception $ex){
+//         Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
+//     });    
+// // }
 
 Flight::map('query', function($name, $default_value = NULL){
     $request = Flight::request();
@@ -34,6 +35,7 @@ Flight::map('query', function($name, $default_value = NULL){
 Flight::register('accountService', 'AccountService');
 Flight::register('studentService', 'StudentService');
 Flight::register('courseService', 'CourseService');
+Flight::register('professorService', 'ProfessorService');
 
 /* utility function for getting header parameters */
 Flight::map('header', function($name){

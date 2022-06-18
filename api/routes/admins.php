@@ -9,6 +9,7 @@ Flight::route('GET /admin/account', function () {
     Flight::json(Flight::accountService()->get_by_id(Flight::get('user')['aid']));
 });
 
+
 /**
  * @OA\Get(
  *     path="/admin/students", tags={"admin", "students"}, security={{"ApiKeyAuth": {}}},

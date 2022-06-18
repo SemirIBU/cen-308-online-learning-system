@@ -102,6 +102,9 @@ class BaseDao {
   public function get_by_id($id){
     return $this->query_unique("SELECT * FROM ".$this->table." WHERE id = :id", ["id" => $id]);
   }
+  public function get_by_aid($aid){
+    return $this->query_unique("SELECT * FROM ".$this->table." WHERE account_id = :aid", ["aid" => $aid]);
+  }
 
   public function get_all($offset = 0, $limit = 25, $order="-id"){
 
