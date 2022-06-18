@@ -51,6 +51,6 @@ class Student {
       },
       columns: [{ data: "id" }, { data: "name" }, { data: "email" }],
     });
-    $("#students-data-table").show();
+
   }
 }

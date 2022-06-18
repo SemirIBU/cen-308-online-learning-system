@@ -95,7 +95,11 @@ Flight::route('GET /confirm/@token', function($token){
   Flight::json(Flight::jwt(Flight::studentService()->confirm($token)));
 });
 
-Flight::route('GET /@id', function($id){
-  $student = Flight::studentService()->get_by_id($id);
-  Flight::json($student);
+/**
+ * @OA\Get(path="/student/profile", tags={"student"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Response(response="200", description="Fetch student profile")
+ * )
+ */
+Flight::route('GET /student/profile', function(){
+  Flight::json(Flight::studentService()->get_student_profile_by_aid(Flight::get('user')['aid']));
 });

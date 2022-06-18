@@ -1,6 +1,7 @@
 class Course{
 
     static init(){
+      $('#courses-data-table').hide();
       $('.btn.add-course').click(function (){
         $('#modalLabel').html('Add course');
         $('.modal-footer button[type="submit"]').html('Add course');

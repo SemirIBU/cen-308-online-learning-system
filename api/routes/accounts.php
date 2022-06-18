@@ -1,5 +1,4 @@
 <?php
-/* Swagger documentation*/
 
 /**
  * @OA\Get(

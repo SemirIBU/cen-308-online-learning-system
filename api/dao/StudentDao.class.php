@@ -18,6 +18,10 @@ class StudentDao extends BaseDao{
   public function get_student_by_token($token){
     return $this->query_unique("SELECT * FROM students WHERE token = :token", ["token" => $token]);
   }
+  public function get_student_profile_by_aid($aid)
+  {
+    return $this->query_unique("SELECT * FROM students WHERE account_id = :aid", ["aid" => $aid]);
+  }
 
   public function get_students($search, $offset, $limit, $order){
     list($order_column, $order_direction)= self::parse_order($order);
