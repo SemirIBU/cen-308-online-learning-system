@@ -14,14 +14,15 @@ class BaseDao {
   private $table;
 
   public function beginTransaction(){
-    $this->connection->beginTransaction();
+    $response = $this->connection->beginTransaction();
   }
+
   public function commit(){
     $this->connection->commit();
-
   }
+
   public function rollBack(){
-    $this->connection->rollBack();
+    $response = $this->connection->rollBack();
   }
 
   public function parse_order($order){
