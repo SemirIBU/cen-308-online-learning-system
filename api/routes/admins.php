@@ -9,6 +9,14 @@ Flight::route('GET /admin/account', function () {
     Flight::json(Flight::accountService()->get_by_id(Flight::get('user')['aid']));
 });
 
+/**
+ * @OA\Get(path="/admin/profile", tags={"admin"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Response(response="200", description="Fetch admin profile")
+ * )
+ */
+Flight::route('GET /admin/profile', function(){
+    Flight::json(Flight::studentService()->get_by_aid(Flight::get('user')['aid']));
+  });
 
 /**
  * @OA\Get(

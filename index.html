@@ -38,18 +38,18 @@
                         <div class="collapse navbar-collapse main-menu-item justify-content-end"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
-                                <li class="nav-item active">
+                                <!-- <li class="nav-item active">
                                     <a class="nav-link" href="#home">Home</a>
-                                </li>                               
+                                </li>                                -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#courses">Courses</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#students">Students</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" href="#contact">Contact</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="#profile">Profile</a>
                                 </li>
@@ -65,10 +65,10 @@
     </header>
 
     <main id="jqueryspapp" role="main">
-        <section id="home" data-load="home.html"></section>
+        <!-- <section id="home" data-load="home.html"></section>
+        <section id="contact" data-load="contact.html"></section> -->
         <section id="courses" data-load="courses.html"></section>
         <section id="students" data-load="students.html"></section>
-        <section id="contact" data-load="contact.html"></section>
         <section id="profile" data-load="profile.html"></section>
     </main>
 
@@ -90,7 +90,7 @@
                         <div class="contact_info">
                             <p><span> Address :</span> Hath of it fly signs bear be one blessed after </p>
                             <p><span> Phone :</span> +2 36 265 (8060)</p>
-                            <p><span> Email : </span>info@colorlib.com </p>
+                            <p><span> Email : </span>info@stu.ibu.edu.ba </p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var app = $.jQuerySPApp({ defaultView: "home" }); // initialize   
+            var app = $.jQuerySPApp({ defaultView: "profile" }); // initialize   
             app.route({view : "courses", load : "courses.html", onReady: function() { Course.init() }});    
             app.route({view : "profile", load : "profile.html", onReady: function() { Profile.init() }});    
             app.route({view : "students", load : "students.html", onReady: function() { Student.init() }});    
