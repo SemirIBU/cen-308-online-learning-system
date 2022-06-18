@@ -49,7 +49,7 @@ class Student {
           delete d.draw;
         },
       },
-      columns: [{ data: "id" }, { data: "name" }, { data: "email" }],
+      columns: [{ data: "id" }, { data: "name" }, { data: "email" }, { data: "phone" }, { data: "country" }, { data: "city" }, { data: "zip_code" }, { data: "address" }],
     });
 
   }

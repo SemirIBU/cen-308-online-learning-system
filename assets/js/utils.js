@@ -35,5 +35,8 @@ class AUtils{
     if (user_info.r != "test"){
       $(".test-content").remove();
     }
+    if (user_info.r != "student"){
+      $(".only-student-content").remove();
+    }
   }
 }
