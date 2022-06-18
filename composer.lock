@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5693cb90d77c65ecb01cf272ab62f38f",
+    "content-hash": "d07e1196f852b8ef26c336928c5b58b0",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -280,23 +280,24 @@
         },
         {
             "name": "mikecao/flight",
-            "version": "v1.3.9",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikecao/flight.git",
-                "reference": "bc5e03ca59accb3ef37e31b6d4a2a9c78c7bb7ce"
+                "reference": "a130231646e6c7a9e2504a9025f851e9a3bf1975"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikecao/flight/zipball/bc5e03ca59accb3ef37e31b6d4a2a9c78c7bb7ce",
-                "reference": "bc5e03ca59accb3ef37e31b6d4a2a9c78c7bb7ce",
+                "url": "https://api.github.com/repos/mikecao/flight/zipball/a130231646e6c7a9e2504a9025f851e9a3bf1975",
+                "reference": "a130231646e6c7a9e2504a9025f851e9a3bf1975",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "ext-json": "*",
+                "php": "^7.4|^8.0|^8.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.6"
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -321,9 +322,9 @@
             "homepage": "http://flightphp.com",
             "support": {
                 "issues": "https://github.com/mikecao/flight/issues",
-                "source": "https://github.com/mikecao/flight/tree/v1.3.9"
+                "source": "https://github.com/mikecao/flight/tree/v2.0.1"
             },
-            "time": "2021-04-05T01:36:59+00:00"
+            "time": "2021-12-19T03:03:01+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
