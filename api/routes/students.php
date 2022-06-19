@@ -8,7 +8,7 @@
  *    			@OA\Schema(
  *    				 @OA\Property(property="account", required="true", type="string", example="My test account", description="Name of the account"),
  *    				 @OA\Property(property="name", required="true", type="string", example="First Last name", description="Name of the student"),
- *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="student's email address"),
+ *    				 @OA\Property(property="email", required="true", type="string", example="admir.sahman@stu.ibu.edu.ba", description="student's email address"),
  *    				 @OA\Property(property="password", required="true", type="string", example="12345", description="Pasword"),
  *             )
  *          )
@@ -31,7 +31,7 @@ Flight::route('POST /register', function(){
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="student's email address"),
+ *    				 @OA\Property(property="email", required="true", type="string", example="admir.sahman@stu.ibu.edu.ba", description="student's email address"),
  *    				 @OA\Property(property="password", required="true", type="string", example="12345", description="Pasword"),
  *             )
  *          )
@@ -51,7 +51,7 @@ Flight::route('POST /login', function(){
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="email", required="true", type="string", example="myemail@gmail.com", description="student's email address"),
+ *    				 @OA\Property(property="email", required="true", type="string", example="admir.sahman@stu.ibu.edu.ba", description="student's email address"),
  *             )
  *          )
  *     ),

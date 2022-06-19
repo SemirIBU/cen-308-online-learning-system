@@ -1,6 +1,5 @@
 <?php
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
@@ -46,7 +45,8 @@ Flight::map('header', function ($name) {
 
 /* utility function for generating JWT token */
 Flight::map('jwt', function ($user) {
-    $jwt = \Firebase\JWT\JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "aid" => $user["account_id"], "r" => $user["role"]], Config::JWT_SECRET);
+    $jwt = JWT::encode(["exp" => (time() + Config::JWT_TOKEN_TIME), "id" => $user["id"], "aid" => $user["account_id"], "r" => $user["role"]], Config::JWT_SECRET, 'HS256');
+    //$jwt = JWT::encode($user, Config::JWT_SECRET, 'HS256');
     return ["token" => $jwt];
 });
 
