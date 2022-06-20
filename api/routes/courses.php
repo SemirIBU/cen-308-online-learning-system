@@ -51,7 +51,6 @@ Flight::route('POST /student/courses', function(){
 
 /**
  * @OA\Get(path="/admin/courses", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
- *     @OA\Parameter(type="integer", in="query", name="account_id", default=0, description="Account ID"),
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts. Case insensitive search."),
@@ -60,13 +59,12 @@ Flight::route('POST /student/courses', function(){
  * )
  */
 Flight::route('GET /admin/courses', function(){
-  $account_id = 0;
   $offset = Flight::query('offset', 0);
   $limit = Flight::query('limit', 25);
   $search = Flight::query('search');
   $order = Flight::query('order', '-id');
 
-  Flight::json(Flight::courseService()->get_courses($account_id, $offset, $limit, $search, $order));
+  Flight::json(Flight::courseService()->get_courses($offset, $limit, $search, $order));
 });
 
 /**
