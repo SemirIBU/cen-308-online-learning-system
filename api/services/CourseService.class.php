@@ -26,12 +26,12 @@ class CourseService extends BaseService{
 
 
 
-  public function add_course($student, $course){
+  public function add_course($user, $course){
     try {
       $data = [
         "name" => $course["name"],
         "description" => $course["description"],        
-        "account_id" => $student['aid']
+        "account_id" => $user['aid']
       ];
       return parent::add($data);
     } catch (\Exception $e) {
@@ -46,6 +46,11 @@ class CourseService extends BaseService{
   public function update_course($id, $course){
     
     return $this->update($id, $course);
+  }
+
+  public function delete_course($id){
+    return $this->dao->delete($id);
+
   }
 }
 ?>

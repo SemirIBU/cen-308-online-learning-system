@@ -80,7 +80,6 @@ Flight::route('GET /admin/courses/@id', function($id){
  *   @OA\RequestBody(description="Basic course info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
- *             @OA\Property(property="account_id", required="true", type="integer", example=1,	description="Id of account"),
  *    				 @OA\Property(property="name", required="true", type="string", example="name",	description="Name of the course" ),
  *    				 @OA\Property(property="description", required="true", type="string", example="description",	description="Description of the course" ),
  *          )
@@ -90,18 +89,18 @@ Flight::route('GET /admin/courses/@id', function($id){
  * )
  */
 Flight::route('POST /admin/courses', function(){
-  Flight::json(Flight::courseService()->add(Flight::request()->data->getData()));
+  Flight::json(Flight::courseService()->add_course(Flight::get('user'),Flight::request()->data->getData()));
 });
 
-/**
+
+ /**
  * @OA\Put(path="/admin/courses/{id}", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
- *   @OA\Parameter(type="integer", in="path", name="id", default=1),
- *   @OA\RequestBody(description="Basic course info that is going to be updated", required=true,
+ *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="Id of course"),
+ *     @OA\RequestBody(description="Basic course info", required=true,
  *       @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="name", required="false", type="string", example="name",	description="Name of the Course" ),
- *    				 @OA\Property(property="description", required="false", type="string", example="description",	description="Course description" ),
- *    				 @OA\Property(property="status", required="false", type="string", example="inactive",	description="Course status" ),
+ *    				 @OA\Property(property="name", required="true", type="string", example="name",	description="Name of the updated course" ),
+ *    				 @OA\Property(property="description", required="true", type="string", example="description",	description="Description of the updated course" ),
  *          )
  *       )
  *     ),
@@ -109,6 +108,15 @@ Flight::route('POST /admin/courses', function(){
  * )
  */
 Flight::route('PUT /admin/courses/@id', function($id){
-  Flight::json(Flight::courseService()->update_course(intval($id), Flight::request()->data->getData()));
+  Flight::json(Flight::courseService()->update_course($id,Flight::request()->data->getData()));
 });
-?>
+
+ /**
+ * @OA\Delete(path="/admin/courses/{id}", tags={"admin", "courses"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="Id of course"),
+ *     @OA\Response(response="200", description="Delete course")
+ * )
+ */
+Flight::route('DELETE /admin/courses/@id', function($id){
+  Flight::json(Flight::courseService()->delete_course($id));
+});

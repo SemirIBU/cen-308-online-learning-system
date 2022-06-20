@@ -35,7 +35,7 @@ class RestClient{
       RestClient.request(endpoint, "GET", null, success, error);
     }
   
-    static delete(endpoint, body, success, error){
-      RestClient.request(endpoint, "DELETE", body, success, error);
+    static delete(endpoint, success, error){
+      RestClient.request(endpoint, "DELETE", null,success, error);
     }
   }

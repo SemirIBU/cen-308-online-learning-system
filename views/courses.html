@@ -45,10 +45,40 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form role="form" id="add-course">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="modalLabel">Add course</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="Name of the course" required minlength="3">
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea name="description" class="form-control" rows="10" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add course</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+
+    </div>
+        <div class="modal fade" id="edit-course-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form role="form" id="edit-course">
                         <input type="hidden" name="id" />
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="modalLabel"></h4>
+                            <h4 class="modal-title" id="modalLabel">Edit course</h4>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
