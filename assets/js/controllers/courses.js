@@ -48,7 +48,7 @@ class Course{
               "infoFiltered": ""
         },
         ajax: {
-          url: "api/student/courses",
+          url: "api/admin/courses",
           type: "GET",
           beforeSend: function(xhr){
             xhr.setRequestHeader('Authentication', localStorage.getItem("token"));
