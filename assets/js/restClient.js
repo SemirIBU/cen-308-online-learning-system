@@ -7,7 +7,7 @@ class RestClient{
            contentType: "application/json",
            beforeSend: function(xhr){
              if (localStorage.getItem("token")){ 
-               xhr.setRequestHeader('Authorization', localStorage.getItem("token"));
+               xhr.setRequestHeader('Authentication', localStorage.getItem("token"));
              }
            },
            success: function(data) {

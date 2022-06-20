@@ -6,7 +6,7 @@ use Firebase\JWT\Key;
 Flight::route('/student/*', function(){
   $headers = getallheaders();
   try {
-    $user = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET, 'HS256'));   
+    $user = (array)JWT::decode($headers['Authentication'], new Key(Config::JWT_SECRET, 'HS256'));   
     if ($user['r'] != "student" and $user['r'] != "admin"){
       throw new Exception("Student access required", 403);
     }
@@ -22,7 +22,7 @@ Flight::route('/student/*', function(){
 Flight::route('/professor/*', function(){
   $headers = getallheaders();
   try {
-    $user = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET, 'HS256'));   
+    $user = (array)JWT::decode($headers['Authentication'], new Key(Config::JWT_SECRET, 'HS256'));   
     if ($user['r'] != "professor" and $user['r'] != "admin"){
       throw new Exception("Professor access required", 403);
     }
@@ -37,7 +37,7 @@ Flight::route('/professor/*', function(){
 Flight::route('/admin/*', function(){
   $headers = getallheaders();
   try {
-    $user = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET, 'HS256'));   
+    $user = (array)JWT::decode($headers['Authentication'], new Key(Config::JWT_SECRET, 'HS256'));   
     if ($user['r'] != "admin"){
       throw new Exception("Admin access required", 403);
     }

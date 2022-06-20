@@ -51,7 +51,7 @@ class Course{
           url: "api/admin/courses",
           type: "GET",
           beforeSend: function(xhr){
-            xhr.setRequestHeader('Authorization', localStorage.getItem("token"));
+            xhr.setRequestHeader('Authentication', localStorage.getItem("token"));
           },
           dataSrc: function(resp){
             return resp;
