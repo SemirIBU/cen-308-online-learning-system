@@ -17,7 +17,7 @@ class CourseService extends BaseService{
     return $this->dao->get_courses($offset, $limit, $order);
   }
   public function get_all_courses($offset, $limit, $order){
-    return $this->dao->get_all_courses($offset, $limit, $order);
+    return $this->dao->get_all($offset, $limit, $order);
   }
   
   public function count_courses(){

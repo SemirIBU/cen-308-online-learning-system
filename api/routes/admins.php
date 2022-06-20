@@ -23,7 +23,6 @@ Flight::route('GET /admin/profile', function(){
  *     path="/admin/students", tags={"admin", "students"}, security={{"ApiKeyAuth": {}}},
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
- *     @OA\Parameter(type="string", in="query", name="search", description="Search string from students. Case insensitive search."),
  *     @OA\Parameter(type="string", in="query", name="order", default="-id", description="Sorting for returned elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
  *     @OA\Response(response="200", description="List students from database")
  * )
@@ -31,7 +30,6 @@ Flight::route('GET /admin/profile', function(){
 Flight::route('GET /admin/students',function(){    
     $offset = Flight::query('offset', 0);
     $limit = Flight::query('limit', 25);
-    $search = Flight::query('search');
     $order = Flight::query('order', "-id");
-    Flight::json(Flight::studentService()->get_students($search, $offset, $limit, $order));
+    Flight::json(Flight::studentService()->get_all_students($offset, $limit, $order));
 });

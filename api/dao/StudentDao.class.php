@@ -34,4 +34,8 @@ class StudentDao extends BaseDao{
                            ["name" => strtolower($search)]);
   }
 
+  public function get_all_students($offset, $limit,$order){
+    return $this->dao->get_all($offset, $limit, $order);
+  }
+
 }

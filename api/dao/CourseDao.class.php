@@ -53,16 +53,5 @@ class CourseDao extends BaseDao
       return $this->query($query, $params);
     }
   }
-  public function get_all_courses($offset, $limit, $order)
-  {
-    list($order_column, $order_direction) = self::parse_order($order);
-    $params = [];
-    $query = "SELECT * 
-              FROM courses
-              WHERE status = 'active' 
-              ORDER BY ${order_column} ${order_direction} 
-              LIMIT ${limit} OFFSET ${offset}";
-              
-    return $this->query($query, $params);
-  }
+
 }
