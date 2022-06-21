@@ -44,7 +44,7 @@ class StudentService extends BaseService
     $db_student = $this->update($db_student['id'], ['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
 
     //send email
-    if (Config::ENVIRONMENT() != 'local') $this->smtpClient->send_student_recovery_token($db_student);
+    // if (Config::ENVIRONMENT() != 'local') $this->smtpClient->send_student_recovery_token($db_student);
   }
 
   public function login($student)
