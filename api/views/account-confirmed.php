@@ -1,0 +1,36 @@
+<?php 
+require_once dirname(__FILE__).'/../config.php';
+?>
+
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link href='https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700' rel='stylesheet' type='text/css'>
+	<style>
+		@import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
+		@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+	</style>
+	<link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
+	<script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
+	<script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/html5shiv.js"></script>
+</head>
+<body>
+	<header class="site-header" id="header">
+		<h1 style="font-size: 4rem;" class="site-header__title" data-lead-id="site-header-title">Your account has been confirmed</h1>
+	</header>
+
+	<div class="main-content">
+		<i class="fa fa-check main-content__checkmark" id="checkmark"></i>
+		<p class="main-content__body" data-lead-id="main-content-body">We are looking forward to meeting you in class!</p>
+        <a href="<?php echo Config::ENVIRONMENT()!='local' ? Config::BASE_URL() : 'http://mylocalhost.com/cen-308-online-learning-system'?>">Homepage</a>
+	</div>
+
+	<footer class="site-footer" id="footer">
+		<p class="site-footer__fineprint" id="fineprint">TeachMe ©2022 | All Rights Reserved</p>
+	</footer>
+</body>
+</html>

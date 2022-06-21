@@ -92,7 +92,8 @@ Flight::route('POST /reset', function(){
  * )
  */
 Flight::route('GET /confirm/@token', function($token){
-  Flight::json(Flight::jwt(Flight::studentService()->confirm($token)));
+  Flight::studentService()->confirm($token);
+  Flight::render('account-confirmed');
 });
 
 /**
