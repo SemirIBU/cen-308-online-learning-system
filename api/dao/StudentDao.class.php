@@ -35,7 +35,14 @@ class StudentDao extends BaseDao{
   }
 
   public function get_all_students($offset, $limit,$order){
-    return $this->dao->get_all($offset, $limit, $order);
+    list($order_column, $order_direction)= self::parse_order($order);
+
+    return $this->query("SELECT * 
+                           FROM students 
+                           WHERE LOWER(role) LIKE 'student'
+                           ORDER BY {$order_column} {$order_direction}
+                           LIMIT ${limit} OFFSET ${offset}",[]);
   }
+  
 
 }

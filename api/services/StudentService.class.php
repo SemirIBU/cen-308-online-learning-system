@@ -117,4 +117,8 @@ class StudentService extends BaseService
       return $this->dao->get_students($search, $offset, $limit, $order);
   }
 
+  public function get_all_students($offset,$limit,$order){
+    return $this->dao->get_all_students($offset, $limit, $order);
+  }
+
 }
