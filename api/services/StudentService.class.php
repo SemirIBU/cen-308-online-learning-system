@@ -38,7 +38,7 @@ class StudentService extends BaseService
 
     if (!isset($db_student['id'])) throw new Exception("student doesn't exist", 400);
 
-    if (strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) < 300) throw new Exception("Token already sent", 400);
+    //if (strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) < 300) throw new Exception("Token already sent", 400);
 
     //generate token and save it to db
     $db_student = $this->update($db_student['id'], ['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
