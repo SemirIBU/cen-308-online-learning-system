@@ -86,6 +86,7 @@ button:disabled, button[disabled] {
     top: 0px;
     right: 0px;
     margin: 10px 35px;
+    background-repeat: no-repeat;
 }
 
 .full-page-form-section::before {
