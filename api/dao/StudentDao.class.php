@@ -43,4 +43,13 @@ class StudentDao extends BaseDao{
                            ORDER BY {$order_column} {$order_direction}
                            LIMIT ${limit} OFFSET ${offset}",[]);
   }
+
+  public function unique_check($studentid,$courseid){
+
+    return $this->query("SELECT * 
+                           FROM student_course 
+                           WHERE student_id=:student_id 
+                           AND course_id=:course_id",
+                           ["student_id"=>$studentid,"course_id"=>$courseid]);
+  }
 }

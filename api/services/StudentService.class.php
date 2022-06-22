@@ -128,17 +128,17 @@ class StudentService extends BaseService
   }
 
   public function enrol($studentid,$courseid){
-
+    if (!empty($this->dao->unique_check($studentid,$courseid))) throw new Exception("Already enrolled to this course", 400);
     $studentCourse = $this->studentCourseDao->add([
-      "course_id" => $courseid['course_id'],
+      "course_id" => $courseid,
       "student_id" => $studentid,      
     ]);
 
     return $studentCourse;
   }
   public function unenrol($studentid,$courseid){
-
-    $studentCourse = $this->studentCourseDao->unenrol($studentid,$courseid['course_id']);
+    if (empty($this->dao->unique_check($studentid,$courseid))) throw new Exception("Not enrolled to this course", 400);
+    $studentCourse = $this->studentCourseDao->unenrol($studentid,$courseid);
 
     return $studentCourse;
   }

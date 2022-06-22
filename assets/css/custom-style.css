@@ -300,6 +300,24 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
     border-radius: 50%;
     margin: 0 5px;
 }
+.unenrol-icon{
+    content: url('../img/icons/unenrol.svg');
+    height: 20px;
+    height: 30px;
+    background: #f7b600;
+    padding: 5px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+.enrol-icon{
+    content: url('../img/icons/enrol.svg');
+    height: 20px;
+    height: 30px;
+    background: #f7b600;
+    padding: 5px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
 
 .course-id-field{
     display: flex;

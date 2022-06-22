@@ -112,41 +112,25 @@ Flight::route('GET /student/profile', function () {
 });
 
 /**
- * @OA\Post(path="/student/enrol", tags={"student"}, security={{"ApiKeyAuth": {}}},
- *       @OA\RequestBody(
- *          description="Basic course info", required="true",
- *          @OA\MediaType(
- *    			mediaType="application/json",
- *    			@OA\Schema(
- *    				 @OA\Property(property="course_id", required="true", type="string", example="1", description="Id of the course"),
- *             )
- *          )
- *     ),
+ * @OA\Post(path="/student/enrol/{id}", tags={"student"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(@OA\Schema(type="string"), in="path", allowReserved=true, name="id", default=1, description="Id of the course"),
  *     @OA\Response(response="200", description="Message that the student has enrolled the course.")
  *
  * )
  */
-Flight::route('POST /student/enrol', function () {
+Flight::route('POST /student/enrol/@id', function ($id) {
   $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
-  Flight::studentService()->enrol($studentid,Flight::request()->data->getData());
+  Flight::studentService()->enrol($studentid,$id);
 });
 
 /**
- * @OA\Delete(path="/student/unenrol", tags={"student"}, security={{"ApiKeyAuth": {}}},
- *       @OA\RequestBody(
- *          description="Basic course info", required="true",
- *          @OA\MediaType(
- *    			mediaType="application/json",
- *    			@OA\Schema(
- *    				 @OA\Property(property="course_id", required="true", type="string", example="1", description="Id of the course"),
- *             )
- *          )
- *     ),
+ * @OA\Delete(path="/student/unenrol/{id}", tags={"student"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(@OA\Schema(type="string"), in="path", allowReserved=true, name="id", default=1, description="Id of the course"),
  *     @OA\Response(response="200", description="Message that the student has unenrolled the course.")
  *
  * )
  */
-Flight::route('DELETE /student/unenrol', function () {
+Flight::route('DELETE /student/unenrol/@id', function ($id) {
   $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
-  Flight::studentService()->unenrol($studentid,Flight::request()->data->getData());
+  Flight::studentService()->unenrol($studentid,$id);
 });

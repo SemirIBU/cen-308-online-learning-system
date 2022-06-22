@@ -67,7 +67,18 @@ class Course {
           },
         },
         columns: [          
-          { data: "id" },
+          {
+            data: "id",
+            render: function (data, type, row, meta) {
+              return (
+                '<div class="course-id-field" style="min-width: 60px;"><span class="badge">' +
+                data +
+                '</span><div><a class="pull-left" style="font-size: 15px; cursor: pointer;" onclick="Course.unenrol(' +
+                data +
+                ')"><i class="unenrol-icon"></i></a></div>  </div>'
+              );
+            },
+          },
           { data: "name" },
           { data: "description" },
         ],
@@ -117,7 +128,18 @@ class Course {
           },
         },
         columns: [          
-          { data: "id" },
+          {
+            data: "id",
+            render: function (data, type, row, meta) {
+              return (
+                '<div class="course-id-field" style="min-width: 60px;"><span class="badge">' +
+                data +
+                '</span><div><a class="pull-left" style="font-size: 15px; cursor: pointer;" onclick="Course.enrol(' +
+                data +
+                ')"><i class="enrol-icon"></i></a></div></div>'
+              );
+            },
+          },
           { data: "name" },
           { data: "description" },
         ],
@@ -221,6 +243,20 @@ class Course {
     RestClient.delete("api/admin/courses/" + id, function (data) {
       toastr.success("Course has been deleted");
       $("#courses-data-table").hide();
+      Course.get_all();
+    });
+  }
+  static enrol(courseid) {
+    RestClient.post("api/student/enrol/"+ courseid, false,function (data) {
+      toastr.success("You have enrolled the course");
+      $("#available-courses-data-table").hide();
+      Course.get_all();
+    });
+  }
+  static unenrol(courseid) {
+    RestClient.delete("api/student/unenrol/"+ courseid, function (data) {
+      toastr.success("You have unenrolled the course");
+      $("#students-data-table").hide();
       Course.get_all();
     });
   }
