@@ -122,11 +122,31 @@ Flight::route('GET /student/profile', function () {
  *             )
  *          )
  *     ),
- *     @OA\Response(response="200", description="Message that student has changed password.")
+ *     @OA\Response(response="200", description="Message that the student has enrolled the course.")
  *
  * )
  */
 Flight::route('POST /student/enrol', function () {
   $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
   Flight::studentService()->enrol($studentid,Flight::request()->data->getData());
+});
+
+/**
+ * @OA\Delete(path="/student/unenrol", tags={"student"}, security={{"ApiKeyAuth": {}}},
+ *       @OA\RequestBody(
+ *          description="Basic course info", required="true",
+ *          @OA\MediaType(
+ *    			mediaType="application/json",
+ *    			@OA\Schema(
+ *    				 @OA\Property(property="course_id", required="true", type="string", example="1", description="Id of the course"),
+ *             )
+ *          )
+ *     ),
+ *     @OA\Response(response="200", description="Message that the student has unenrolled the course.")
+ *
+ * )
+ */
+Flight::route('DELETE /student/unenrol', function () {
+  $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
+  Flight::studentService()->unenrol($studentid,Flight::request()->data->getData());
 });

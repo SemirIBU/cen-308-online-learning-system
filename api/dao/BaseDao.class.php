@@ -119,5 +119,8 @@ class BaseDao {
   public function delete($id){
     return $this->query_unique("DELETE FROM ".$this->table." WHERE id=:id", ["id" => $id]);
   }
+  public function unenrol($student_id,$course_id){
+    return $this->query_unique("DELETE FROM ".$this->table." WHERE course_id=:course_id AND student_id=:student_id", ["course_id" => $course_id,"student_id"=>$student_id]);
+  }
 }
 ?>

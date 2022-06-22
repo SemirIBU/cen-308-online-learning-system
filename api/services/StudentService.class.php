@@ -136,5 +136,11 @@ class StudentService extends BaseService
 
     return $studentCourse;
   }
+  public function unenrol($studentid,$courseid){
+
+    $studentCourse = $this->studentCourseDao->unenrol($studentid,$courseid['course_id']);
+
+    return $studentCourse;
+  }
 
 }
