@@ -22,36 +22,18 @@ class CourseDao extends BaseDao
   }
 
 
-  public function get_courses($account_id, $offset, $limit, $search, $order, $total = FALSE)
+  public function get_courses($studentid,$offset,$limit,$order)
   {
-    list($order_column, $order_direction) = self::parse_order($order);
-    $params = [];
-    if ($total) {
-      $query = "SELECT COUNT(*) AS total ";
-    } else {
-      $query = "SELECT * ";
-    }
-    $query .= "FROM courses
-               WHERE status = 'active' ";
+    list($order_column, $order_direction)= self::parse_order($order);
+    $params = ["student_id"=>$studentid];
+    $query = "SELECT courses.id, courses.name
+              FROM courses
+              JOIN student_course ON courses.id = student_course.course_id
+              JOIN students ON student_course.student_id = students.id
+              WHERE student_course.student_id = :student_id
+              ORDER BY {$order_column} {$order_direction}
+              LIMIT ${limit} OFFSET ${offset}";
 
-    if ($account_id) {
-      $params["account_id"] = $account_id;
-      $query .= "AND account_id = :account_id ";
-    }
-
-    if (isset($search)) {
-      $query .= "AND ( LOWER(name) LIKE CONCAT('%', :search, '%') OR LOWER(description) LIKE CONCAT('%', :search, '%'))";
-      $params['search'] = strtolower($search);
-    }
-
-    if ($total) {
-      return $this->query_unique($query, $params);
-    } else {
-      $query .= "ORDER BY ${order_column} ${order_direction} ";
-      $query .= "LIMIT ${limit} OFFSET ${offset}";
-
-      return $this->query($query, $params);
-    }
+    return $this->query($query, $params);
   }
-
 }

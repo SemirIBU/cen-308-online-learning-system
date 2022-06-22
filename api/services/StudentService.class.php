@@ -2,6 +2,7 @@
 require_once dirname(__FILE__) . '/BaseService.class.php';
 require_once dirname(__FILE__) . '/../dao/StudentDao.class.php';
 require_once dirname(__FILE__) . '/../dao/AccountDao.class.php';
+require_once dirname(__FILE__) . '/../dao/StudentCourseDao.class.php';
 
 require_once dirname(__FILE__) . '/../clients/SMTPClient.class.php';
 require_once dirname(__FILE__) . '/../config.php';
@@ -12,12 +13,14 @@ class StudentService extends BaseService
 {
 
   private $accountDao;
+  private $studentCourseDao;
 
   public function __construct()
   {
     $this->dao = new studentDao();
     $this->accountDao = new AccountDao();
     $this->smtpClient = new SMTPClient();
+    $this->studentCourseDao = new StudentCourseDao();
   }
 
   public function reset($student)
@@ -41,10 +44,8 @@ class StudentService extends BaseService
     $currentDate =  date("Y-m-d H:i:s");
     if (strtotime($currentDate) - strtotime($db_student['token_created_at']) < 300) throw new Exception("Token already sent", 400);
 
-    //generate token and save it to db
     $db_student = $this->update($db_student['id'], ['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
 
-    //send email
     if (Config::ENVIRONMENT() != 'local') $this->smtpClient->send_user_recovery_token($db_student);
   }
 
@@ -124,6 +125,16 @@ class StudentService extends BaseService
 
   public function get_all_students($offset,$limit,$order){
     return $this->dao->get_all_students($offset, $limit, $order);
+  }
+
+  public function enrol($studentid,$courseid){
+
+    $studentCourse = $this->studentCourseDao->add([
+      "course_id" => $courseid['course_id'],
+      "student_id" => $studentid,      
+    ]);
+
+    return $studentCourse;
   }
 
 }

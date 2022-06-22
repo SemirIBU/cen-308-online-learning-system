@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @OA\Post(path="/register", tags={"login"},     
  *     @OA\RequestBody(
@@ -22,10 +23,10 @@
  *
  * )
  */
-Flight::route('POST /register', function(){
+Flight::route('POST /register', function () {
   $data = Flight::request()->data->getData();
   Flight::studentService()->register($data);
-  
+
   Flight::json(["message" => "Confirmation email has been sent, please check your inbox"]);
 });
 
@@ -45,7 +46,7 @@ Flight::route('POST /register', function(){
  *
  * )
  */
-Flight::route('POST /login', function(){
+Flight::route('POST /login', function () {
   Flight::json(Flight::jwt(Flight::studentService()->login(Flight::request()->data->getData())));
 });
 
@@ -64,7 +65,7 @@ Flight::route('POST /login', function(){
  *
  * )
  */
-Flight::route('POST /forgot', function(){
+Flight::route('POST /forgot', function () {
   $data = Flight::request()->data->getData();
   Flight::studentService()->forgot($data);
   Flight::json(["message" => "Recovery link has been sent to your email address"]);
@@ -86,7 +87,7 @@ Flight::route('POST /forgot', function(){
  *
  * )
  */
-Flight::route('POST /reset', function(){
+Flight::route('POST /reset', function () {
   Flight::json(Flight::jwt(Flight::studentService()->reset(Flight::request()->data->getData())));
 });
 
@@ -96,7 +97,7 @@ Flight::route('POST /reset', function(){
  *     @OA\Response(response="200", description="Message on successful activation"),
  * )
  */
-Flight::route('GET /confirm/@token', function($token){
+Flight::route('GET /confirm/@token', function ($token) {
   Flight::studentService()->confirm($token);
   Flight::render('account-confirmed');
 });
@@ -106,6 +107,26 @@ Flight::route('GET /confirm/@token', function($token){
  *     @OA\Response(response="200", description="Fetch student profile")
  * )
  */
-Flight::route('GET /student/profile', function(){
+Flight::route('GET /student/profile', function () {
   Flight::json(Flight::studentService()->get_by_aid(Flight::get('user')['aid']));
+});
+
+/**
+ * @OA\Post(path="/student/enrol", tags={"student"}, security={{"ApiKeyAuth": {}}},
+ *       @OA\RequestBody(
+ *          description="Basic course info", required="true",
+ *          @OA\MediaType(
+ *    			mediaType="application/json",
+ *    			@OA\Schema(
+ *    				 @OA\Property(property="course_id", required="true", type="string", example="1", description="Id of the course"),
+ *             )
+ *          )
+ *     ),
+ *     @OA\Response(response="200", description="Message that student has changed password.")
+ *
+ * )
+ */
+Flight::route('POST /student/enrol', function () {
+  $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
+  Flight::studentService()->enrol($studentid,Flight::request()->data->getData());
 });

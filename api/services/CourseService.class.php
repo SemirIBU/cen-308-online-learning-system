@@ -13,8 +13,8 @@ class CourseService extends BaseService{
     return $this->dao->get_course_by_account_and_id($account_id, $id);
   }
 
-  public function get_courses($offset, $limit, $order){
-    return $this->dao->get_courses($offset, $limit, $order);
+  public function get_courses($studentid,$offset,$limit,$order){
+    return $this->dao->get_courses($studentid,$offset,$limit,$order); 
   }
   public function get_all_courses($offset, $limit, $order){
     return $this->dao->get_all($offset, $limit, $order);
@@ -50,7 +50,6 @@ class CourseService extends BaseService{
 
   public function delete_course($id){
     return $this->dao->delete($id);
-
   }
 }
 ?>

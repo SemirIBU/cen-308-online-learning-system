@@ -8,16 +8,13 @@
  *     @OA\Response(response="200", description="List courses for student")
  * )
  */
-Flight::route('GET /student/courses', function(){
-  $account_id = Flight::get('user')['aid'];
+Flight::route('GET /student/courses', function(){  
   $offset = Flight::query('offset', 0);
   $limit = Flight::query('limit', 25);
-  $search = Flight::query('search');
   $order = Flight::query('order', '-id');
 
-  $total = Flight::courseService()->get_courses($account_id, $offset, $limit, $search, $order, TRUE);
-  header('total-records: ' . $total['total']);
-  Flight::json(Flight::courseService()->get_courses($account_id, $offset, $limit, $search, $order));
+  $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
+  Flight::json(Flight::courseService()->get_courses($studentid,$offset, $limit,$order));
 });
 
 
