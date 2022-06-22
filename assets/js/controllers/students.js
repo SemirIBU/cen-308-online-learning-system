@@ -49,8 +49,10 @@ class Student {
           delete d.draw;
         },
       },
-      columns: [{ data: "id" }, { data: "name" }, { data: "email" }, { data: "phone" }, { data: "country" }, { data: "city" }, { data: "zip_code" }, { data: "address" }],
+      columns: [{ data: "id" }, { data: "first_name" }, { data: "last_name" }, { data: "email" }, { data: "phone" }, { data: "country" }, { data: "city" }, { data: "zip_code" }, { data: "address" }],
     });
+    $("#students-data-table").show();
+
 
   }
 }

@@ -66,21 +66,25 @@ class StudentService extends BaseService
 
   public function register($student)
   {
-    if (!isset($student['account'])) throw new Exception("Account field is required");
 
     try {
       $this->dao->beginTransaction();
       $account = $this->accountDao->add([
-        "name" => $student['account'],
         "status" => "PENDING",
         "created_at" => date(Config::DATE_FORMAT)
       ]);
 
       $student = parent::add([
         "account_id" => $account['id'],
-        "name" => $student['name'],
+        "first_name" => $student['first_name'],
+        "last_name" => $student['last_name'],
         "email" => $student['email'],
         "password" => md5($student['password']),
+        "phone" => $student['phone'],
+        "country" => $student['country'],
+        "city" => $student['city'],
+        "zip_code" => $student['zip_code'],
+        "address" => $student['address'],
         "status" => "PENDING",
         "created_at" => date(Config::DATE_FORMAT),
         "token" => md5(random_bytes(16)),

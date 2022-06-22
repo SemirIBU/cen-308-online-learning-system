@@ -6,10 +6,15 @@
  *          @OA\MediaType(
  *    			mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="account", required="true", type="string", example="My test account", description="Name of the account"),
- *    				 @OA\Property(property="name", required="true", type="string", example="First Last name", description="Name of the student"),
+ *    				 @OA\Property(property="first_name", required="true", type="string", example="First name", description="First of the student"),
+ *    				 @OA\Property(property="last_name", required="true", type="string", example="Last name", description="Last name of the student"),
  *    				 @OA\Property(property="email", required="true", type="string", example="admir.sahman@stu.ibu.edu.ba", description="student's email address"),
  *    				 @OA\Property(property="password", required="true", type="string", example="12345", description="Pasword"),
+ *    				 @OA\Property(property="phone", required="true", type="string", example="+38762616940", description="phone"),
+ *    				 @OA\Property(property="country", required="true", type="string", example="BiH", description="country"),
+ *    				 @OA\Property(property="city", required="true", type="string", example="Sarajevo", description="city"),
+ *    				 @OA\Property(property="address", required="true", type="string", example="Podigmanska 4", description="address"),
+ *    				 @OA\Property(property="zip_code", required="true", type="string", example="71210", description="zip_code"),
  *             )
  *          )
  *     ),

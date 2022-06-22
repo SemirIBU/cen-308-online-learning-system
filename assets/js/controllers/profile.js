@@ -7,7 +7,9 @@ class Profile{
       static get_user(){
 
         RestClient.get("api/"+ AUtils.parse_jwt(window.localStorage.getItem("token")).r +"/profile", function(data){
-            $('.profile-full-name').html(data.name);
+            $('.profile-full-name').html(data.first_name+' '+data.last_name);
+            $('.profile-first-name').html(data.first_name);
+            $('.profile-last-name').html(data.last_name);
             $('.profile-id').html(data.id);
             $('.profile-email').html(data.email);
             $('.profile-role').html(data.role);

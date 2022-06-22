@@ -25,8 +25,7 @@
         <div class="col-12 offset-lg-2 col-lg-8">
           <div id="login" class="form-box">
             <h2 class="contact-title">Log in</h2>
-            <form class="form-contact contact_form" method="post" id="loginForm"
-              novalidate="novalidate">
+            <form class="form-contact contact_form" method="post" id="loginForm" novalidate="novalidate">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
@@ -52,20 +51,21 @@
           </div>
           <div id="register" class="form-box">
             <h2 class="contact-title">Register</h2>
-            <form class="form-contact contact_form" method="post" id="registerForm"
-              novalidate="novalidate">
+            <form class="form-contact contact_form" method="post" id="registerForm" novalidate="novalidate">
               <div class="row">
                 <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="account">Account</label>
-                    <input class="form-control thicker-input mb-2" name="account" required type="text"
-                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Account name'"
-                      placeholder='Account name'>
-
-                    <label for="email">Name</label>
-                    <input class="form-control thicker-input mb-2" required name="name" type="text"
-                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your name'" placeholder='Your name'>
-
+                  <div class="form-group">                    
+                    <label for="email">First name</label>
+                    <input class="form-control thicker-input mb-2" required name="first_name" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your first name'"
+                      placeholder='Your first name'>
+                    <label for="email">Last name</label>
+                    <input class="form-control thicker-input mb-2" required name="last_name" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your last name'"
+                      placeholder='Your last name'>
+                    <label for="email">Phone</label>
+                    <input class="form-control thicker-input mb-2" required name="phone" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your phone'" placeholder='Your phone'>
                     <label for="email">E-mail</label>
                     <input class="form-control thicker-input mb-2" required name="email" type="email"
                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'"
@@ -75,6 +75,22 @@
                     <input class="form-control thicker-input mb-2" required name="password" type="password"
                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter password'"
                       placeholder='Enter password'>
+                    <label for="email">Country</label>
+                    <input class="form-control thicker-input mb-2" required name="country" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your country'"
+                      placeholder='Your country'>
+                    <label for="email">City</label>
+                    <input class="form-control thicker-input mb-2" required name="city" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your city'" placeholder='Your city'>
+                    <label for="address">Address</label>
+                    <input class="form-control thicker-input mb-2" required name="address" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your address'" placeholder='Your address'>
+                    <label for="email">Zip code</label>
+                    <input class="form-control thicker-input mb-2" required name="zip_code" type="text"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your zip code'"
+                      placeholder='Your zip code'>
+
+
 
                   </div>
                 </div>
@@ -87,8 +103,7 @@
           </div>
           <div id="forgotPassword" class="hidden form-box">
             <h2 class="contact-title">Forgot password</h2>
-            <form class="form-contact contact_form" method="post" id="forgotPasswordForm"
-              novalidate="novalidate">
+            <form class="form-contact contact_form" method="post" id="forgotPasswordForm" novalidate="novalidate">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
@@ -108,8 +123,7 @@
           </div>
           <div id="resetPassword" class="hidden form-box">
             <h2 class="contact-title">Change password</h2>
-            <form class="form-contact contact_form" id="resetPasswordForm"
-              novalidate="novalidate">
+            <form class="form-contact contact_form" id="resetPasswordForm" novalidate="novalidate">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
@@ -353,7 +367,7 @@
     });
 
     $("#loginForm").validate({
-      rules: {        
+      rules: {
         email: {
           required: true,
           email: true
@@ -363,7 +377,7 @@
           minlength: 5
         },
       },
-      messages: {        
+      messages: {
         email: "Please enter a valid email address",
         password: {
           required: "Please enter your password",
@@ -377,13 +391,13 @@
     });
 
     $("#forgotPasswordForm").validate({
-      rules: {        
+      rules: {
         email: {
           required: true,
           email: true
         },
       },
-      messages: {        
+      messages: {
         email: "Please enter your email address",
       },
       submitHandler: function (form, event) {
@@ -392,13 +406,13 @@
       }
     });
     $("#resetPasswordForm").validate({
-      rules: {        
+      rules: {
         password: {
           required: true,
           minlength: 5
         },
       },
-      messages: {        
+      messages: {
         password: {
           required: "Please provide a password",
           minlength: "Your password must be at least 5 characters long"
