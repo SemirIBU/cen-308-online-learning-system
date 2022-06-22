@@ -17,6 +17,24 @@ Flight::route('GET /student/courses', function(){
   Flight::json(Flight::courseService()->get_courses($studentid,$offset, $limit,$order));
 });
 
+/**
+ * @OA\Get(path="/student/available", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},
+ *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
+ *     @OA\Parameter(type="integer", in="query", name="limit", default=25, description="Limit for pagination"),
+ *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts. Case insensitive search."),
+ *     @OA\Parameter(type="string", in="query", name="order", default="-id", description="Sorting for return elements. -column_name ascending order by column_name or +column_name descending order by column_name"),
+ *     @OA\Response(response="200", description="List available courses for student")
+ * )
+ */
+Flight::route('GET /student/available', function(){  
+  $offset = Flight::query('offset', 0);
+  $limit = Flight::query('limit', 25);
+  $order = Flight::query('order', '-id');
+
+  $studentid = Flight::studentService()->get_by_aid(Flight::get('user')['aid'])['id'];
+  Flight::json(Flight::courseService()->get_available_courses($studentid,$offset, $limit,$order));
+});
+
 
 /**
  * @OA\Get(path="/student/courses/{id}", tags={"student", "courses"}, security={{"ApiKeyAuth": {}}},

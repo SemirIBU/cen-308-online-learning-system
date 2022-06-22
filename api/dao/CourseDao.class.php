@@ -26,13 +26,29 @@ class CourseDao extends BaseDao
   {
     list($order_column, $order_direction)= self::parse_order($order);
     $params = ["student_id"=>$studentid];
-    $query = "SELECT courses.id, courses.name
+    $query = "SELECT courses.id, courses.name,courses.description
               FROM courses
               JOIN student_course ON courses.id = student_course.course_id
               JOIN students ON student_course.student_id = students.id
               WHERE student_course.student_id = :student_id
               ORDER BY {$order_column} {$order_direction}
               LIMIT ${limit} OFFSET ${offset}";
+
+    return $this->query($query, $params);
+  }
+  public function get_available_courses($studentid,$offset,$limit,$order)
+  {
+    list($order_column, $order_direction)= self::parse_order($order);
+    $params = ["student_id"=>$studentid];
+    $query = "SELECT  courses.*
+              FROM    courses
+              WHERE   NOT EXISTS (SELECT 1
+              FROM student_course students
+              WHERE courses.id = students.course_id
+              AND students.student_id IN (:student_id))
+              ORDER BY {$order_column} {$order_direction}
+              LIMIT ${limit} OFFSET ${offset}";
+              
 
     return $this->query($query, $params);
   }

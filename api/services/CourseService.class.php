@@ -51,5 +51,11 @@ class CourseService extends BaseService{
   public function delete_course($id){
     return $this->dao->delete($id);
   }
+
+  public function get_available_courses($studentid,$offset,$limit,$order)
+  {
+    return $this->dao->get_available_courses($studentid,$offset,$limit,$order);
+
+  }
 }
 ?>
