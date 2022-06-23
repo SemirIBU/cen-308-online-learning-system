@@ -10,6 +10,8 @@ require_once dirname(__FILE__) . '/services/CourseService.class.php';
 require_once dirname(__FILE__) . '/services/ProfessorService.class.php';
 require_once dirname(__FILE__) . '/config.php';
 
+require_once dirname(__FILE__).'/clients/CDNClient.class.php';
+
 if (Config::ENVIRONMENT() == 'local') {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -36,6 +38,10 @@ Flight::register('accountService', 'AccountService');
 Flight::register('studentService', 'StudentService');
 Flight::register('courseService', 'CourseService');
 Flight::register('professorService', 'ProfessorService');
+
+/*register CDN*/
+Flight::register('cdnClient', 'CDNClient');
+
 
 /* utility function for getting header parameters */
 Flight::map('header', function ($name) {
@@ -68,6 +74,7 @@ require_once dirname(__FILE__) . '/routes/students.php';
 require_once dirname(__FILE__) . '/routes/courses.php';
 require_once dirname(__FILE__) . '/routes/professors.php';
 require_once dirname(__FILE__) . '/routes/admins.php';
+require_once dirname(__FILE__) . '/routes/cdn.php';
 
 
 

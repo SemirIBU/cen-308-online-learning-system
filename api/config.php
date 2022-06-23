@@ -4,6 +4,7 @@ class Config
 {
   const DATE_FORMAT = "Y-m-d H:i:s";
 
+  /** DATABASE */
   public static function DB_HOST()
   {
     return Config::get_env("DB_HOST", "localhost");
@@ -29,7 +30,7 @@ class Config
     return Config::get_env("BASE_URL", "cen-308-online-learning-system");
   }
 
-
+  /** SMTP */
   public static function SMTP_HOST()
   {
     return Config::get_env("SMTP_HOST", "smtp.gmail.com");
@@ -52,6 +53,26 @@ class Config
     return Config::get_env("ENVIRONMENT", "local");
   }
 
+
+    /** CDN */
+    public static function CDN_KEY(){
+      return Config::get_env("CDN_KEY", "");
+    }
+    public static function CDN_SECRET(){
+      return Config::get_env("CDN_SECRET", "");
+    }
+    public static function CDN_SPACE(){
+      return Config::get_env("CDN_SPACE", "");
+    }
+    public static function CDN_BASE_URL(){
+      return Config::get_env("CDN_BASE_URL", "");
+    }
+    public static function CDN_REGION(){
+      return Config::get_env("CDN_REGION", "");
+    }
+
+
+  /** JWT */
   const JWT_SECRET = "jnqz+t2*7QyE643GmVmaT*as";
   const JWT_TOKEN_TIME = 604800;
 

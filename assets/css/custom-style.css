@@ -318,6 +318,15 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
     border-radius: 50%;
     margin: 0 5px;
 }
+.profile-icon{
+    content: url('../img/icons/profile-picture.svg');
+    height: 20px;
+    height: 30px;
+    background: #f7b600;
+    padding: 5px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
 
 .course-id-field{
     display: flex;
@@ -348,4 +357,19 @@ div.dataTables_wrapper div.dataTables_processing {
 
 .table td, .table th {
     vertical-align: middle;
+}
+
+.profile-picture-container{
+    position: relative;
+    display: inline-flex;
+}
+
+#file-upload[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
 }
