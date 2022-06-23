@@ -5,7 +5,7 @@ class Course {
       submitHandler: function (form, event) {
         event.preventDefault();
         var data = AUtils.form2json($(form));
-        $("#courses-data-table").hide();
+        
           Course.add(data);        
       },
     });
@@ -13,16 +13,26 @@ class Course {
       submitHandler: function (form, event) {
         event.preventDefault();
         var data = AUtils.form2json($(form));
-        $("#courses-data-table").hide();
+        
           Course.update(data);        
       },
     });
     AUtils.role_based_elements();
+    
     Course.get_all();
   }
 
   static get_all() {
-    if(AUtils.parse_jwt(localStorage.getItem('token'))['r']=='student'){
+    if ($.fn.DataTable.isDataTable("#courses-data-table")) {
+      $('#courses-data-table').DataTable().clear().destroy();
+    }
+    if ($.fn.DataTable.isDataTable("#available-courses-data-table")) {
+      $('#available-courses-data-table').DataTable().clear().destroy();
+    }
+    if ($.fn.DataTable.isDataTable("#students-data-table")) {
+      $('#students-data-table').DataTable().clear().destroy();
+    }
+    if(AUtils.parse_jwt(localStorage.getItem('token'))['r']=='student'){      
       $("#students-data-table").DataTable({
         processing: true,
         serverSide: true,
@@ -82,8 +92,7 @@ class Course {
           { data: "name" },
           { data: "description" },
         ],
-      });
-      $("#students-data-table").show();
+      });      
       $("#available-courses-data-table").DataTable({
         processing: true,
         serverSide: true,
@@ -144,8 +153,8 @@ class Course {
           { data: "description" },
         ],
       });
-      $("#available-courses-data-table").show();
-    }else
+      
+    }else    
     $("#courses-data-table").DataTable({
       processing: true,
       serverSide: true,
@@ -208,14 +217,14 @@ class Course {
         { data: "description" },
       ],
     });
-    $("#courses-data-table").show();
+   
 
   }
 
   static add(course) {
     RestClient.post("api/admin/courses", course, function (data) {
       toastr.success("Course has been added");
-      $("#courses-data-table").hide();
+      
       Course.get_all();
       $("#add-course").trigger("reset");
       $("#add-course-modal").modal("hide");
@@ -242,21 +251,19 @@ class Course {
   static delete(id) {
     RestClient.delete("api/admin/courses/" + id, function (data) {
       toastr.success("Course has been deleted");
-      $("#courses-data-table").hide();
+      
       Course.get_all();
     });
   }
   static enrol(courseid) {
     RestClient.post("api/student/enrol/"+ courseid, false,function (data) {
-      toastr.success("You have enrolled the course");
-      $("#available-courses-data-table").hide();
+      toastr.success("You have enrolled the course");      
       Course.get_all();
     });
   }
   static unenrol(courseid) {
     RestClient.delete("api/student/unenrol/"+ courseid, function (data) {
-      toastr.success("You have unenrolled the course");
-      $("#students-data-table").hide();
+      toastr.success("You have unenrolled the course");      
       Course.get_all();
     });
   }
