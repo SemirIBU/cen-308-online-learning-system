@@ -75,9 +75,6 @@ class Profile {
             data.url + "?t=" + new Date().getTime()
           );
         }
-      },
-      function (data) {
-        console.log("Error");
       }
     );
   }

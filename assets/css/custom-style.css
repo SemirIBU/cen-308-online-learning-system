@@ -283,7 +283,6 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 
 .edit-icon{
     content: url('../img/icons/edit.svg');
-    height: 20px;
     height: 30px;
     background: #f7b600;
     padding: 5px;
@@ -293,7 +292,6 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 }
 .delete-icon{
     content: url('../img/icons/delete.svg');
-    height: 20px;
     height: 30px;
     background: #f7b600;
     padding: 5px;
@@ -311,7 +309,6 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 }
 .enrol-icon{
     content: url('../img/icons/enrol.svg');
-    height: 20px;
     height: 30px;
     background: #f7b600;
     padding: 5px;
@@ -320,8 +317,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
 }
 .profile-icon{
     content: url('../img/icons/profile-picture.svg');
-    height: 20px;
-    height: 30px;
+    height: 40px;
     background: #f7b600;
     padding: 5px;
     border-radius: 50%;
@@ -372,4 +368,17 @@ div.dataTables_wrapper div.dataTables_processing {
     top: 0;
     right: 0;
     cursor: pointer;
+}
+
+#profile-image{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+@media screen and (min-width:992px){
+    .profile-icon{
+        height: 30px;
+    }
+    
 }
