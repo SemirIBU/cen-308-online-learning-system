@@ -339,3 +339,13 @@ div.dataTables_wrapper div.dataTables_processing {
     display: inline-block;
 }
     
+
+.button-tm{
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: #f7b600;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}

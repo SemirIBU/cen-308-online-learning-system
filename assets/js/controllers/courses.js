@@ -73,9 +73,9 @@ class Course {
               return (
                 '<div class="course-id-field" style="min-width: 60px;"><span class="badge">' +
                 data +
-                '</span><div><a class="pull-left" style="font-size: 15px; cursor: pointer;" onclick="Course.unenrol(' +
+                '</span><div><a class="d-flex align-items-center button-tm" style="font-size: 15px; cursor: pointer;" onclick="Course.unenrol(' +
                 data +
-                ')"><i class="unenrol-icon"></i></a></div>  </div>'
+                ')"><i class="unenrol-icon"></i>Unenrol me</a></div>  </div>'
               );
             },
           },
@@ -134,9 +134,9 @@ class Course {
               return (
                 '<div class="course-id-field" style="min-width: 60px;"><span class="badge">' +
                 data +
-                '</span><div><a class="pull-left" style="font-size: 15px; cursor: pointer;" onclick="Course.enrol(' +
+                '</span><div><a class="d-flex align-items-center button-tm" style="font-size: 15px; cursor: pointer;" onclick="Course.enrol(' +
                 data +
-                ')"><i class="enrol-icon"></i></a></div></div>'
+                ')"><i class="enrol-icon"></i>Enrol me</a></div></div>'
               );
             },
           },
