@@ -4,7 +4,7 @@ Online Learning System represents platform that will push online learning and ex
 
 ### Link of the live app [TeachMe](https://admirsahman.software/) :mortar_board:
 
-## v3.0 Features
+## v2.0 Features
 * Hosted on digital ocean
 * Implemented CDN through Digital Ocean spaces and Amazon S3 cloud data storage service
 * Asset cleanup and removal of unecessary files 
