@@ -23,15 +23,15 @@ class StudentService extends BaseService
     $this->studentCourseDao = new StudentCourseDao();
   }
 
-  public function reset($token)
+  public function reset($student)
   {
-    $db_student = $this->dao->get_student_by_token($token);
+    $db_student = $this->dao->get_student_by_token($student['token']);
 
     if (!isset($db_student['id'])) throw new Exception("Invalid token", 400);
 
     if (strtotime(date(Config::DATE_FORMAT)) - strtotime($db_student['token_created_at']) > 300) throw new Exception("Token expired", 400);
 
-    $this->dao->update($db_student['id'], ['password' => md5($db_student['password']), 'token' => NULL]);
+    $this->dao->update($db_student['id'], ['password' => md5($student['password']), 'token' => NULL]);
 
     return $db_student;
   }
