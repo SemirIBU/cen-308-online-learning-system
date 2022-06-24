@@ -202,7 +202,7 @@
     function changePassword() {
       $("#reset-link").prop('disabled', true);
       $("#loader").show();
-      $.post("api/reset", AUtils.form2json("#changePasswordForm")).done(function (data) {
+      $.post("api/reset", AUtils.form2json("#resetPasswordForm")).done(function (data) {
         window.localStorage.setItem("token", data.token);
         $.toast({
           heading: 'Success',
