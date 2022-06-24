@@ -41,9 +41,6 @@ class StudentService extends BaseService
 
     if (!isset($db_student['id'])) throw new Exception("student doesn't exist", 400);
 
-    $currentDate =  date("Y-m-d H:i:s");
-    if (strtotime($currentDate) - strtotime($db_student['token_created_at']) < 300) throw new Exception("Token already sent", 400);
-
     $db_student = $this->update($db_student['id'], ['token' => md5(random_bytes(16)), 'token_created_at' => date(Config::DATE_FORMAT)]);
 
     if (Config::ENVIRONMENT() != 'local') $this->smtpClient->send_user_recovery_token($db_student);
